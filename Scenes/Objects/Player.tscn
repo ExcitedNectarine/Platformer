@@ -1,0 +1,1164 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Textures/Player/Idle.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Player/Run.png" type="Texture" id=3]
+[ext_resource path="res://Textures/Player/Jump.png" type="Texture" id=4]
+[ext_resource path="res://Textures/Player/Dash.png" type="Texture" id=5]
+[ext_resource path="res://Textures/Player/BlockIdle.png" type="Texture" id=6]
+[ext_resource path="res://Textures/Player/BlockRun.png" type="Texture" id=7]
+[ext_resource path="res://Textures/Player/Swing.png" type="Texture" id=8]
+[ext_resource path="res://Textures/Player/Thrust.png" type="Texture" id=9]
+[ext_resource path="res://Textures/Player/HeavyThrust.png" type="Texture" id=10]
+[ext_resource path="res://Textures/Player/BowAndArrow.png" type="Texture" id=11]
+[ext_resource path="res://Textures/Player/Drink.png" type="Texture" id=12]
+[ext_resource path="res://Textures/Player/Death.png" type="Texture" id=13]
+[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=14]
+[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=15]
+[ext_resource path="res://Themes/StaminaBar.tres" type="Theme" id=16]
+[ext_resource path="res://Textures/Player/Potion.png" type="Texture" id=17]
+[ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://Textures/Player/Quiver.png" type="Texture" id=19]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 27, 39 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 39, 12 )
+
+[sub_resource type="Gradient" id=3]
+
+offsets = PoolRealArray( 0, 1 )
+colors = PoolColorArray( 1, 1, 0, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+
+flags = 4
+gradient = SubResource( 3 )
+width = 2048
+
+[sub_resource type="ParticlesMaterial" id=5]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 2
+emission_box_extents = Vector3( 5, 30, 1 )
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 0.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 60.0
+initial_velocity_random = 0.0
+angular_velocity = 0.0
+angular_velocity_random = 0.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 0.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 3.0
+scale_random = 0.0
+color_ramp = SubResource( 4 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Color", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Scale", "Spread" ]
+
+[sub_resource type="AudioStreamRandomPitch" id=6]
+
+random_pitch = 1.1
+
+[sub_resource type="Animation" id=7]
+
+length = 0.8
+loop = true
+step = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/BlockIdle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+
+length = 1.2
+loop = true
+step = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/BlockRun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_footstep"
+}, {
+"args": [  ],
+"method": "play_footstep"
+} ]
+}
+
+[sub_resource type="Animation" id=9]
+
+length = 0.6
+loop = false
+step = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Death:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 2 ]
+}
+
+[sub_resource type="Animation" id=10]
+
+length = 1.2
+loop = false
+step = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Drink:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "use_potion"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "Drink" ],
+"method": "play_sound"
+} ]
+}
+
+[sub_resource type="Animation" id=11]
+
+length = 0.8
+loop = true
+step = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 0 ]
+}
+
+[sub_resource type="Animation" id=12]
+
+length = 1.2
+loop = false
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/HeavyThrust:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.6, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitboxes/Left/Thrust/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Thrust" ],
+"method": "play_sound"
+}, {
+"args": [  ],
+"method": "on_attack_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=13]
+
+length = 0.4
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Swing:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitboxes/Left/Swing/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Swing" ],
+"method": "play_sound"
+}, {
+"args": [  ],
+"method": "on_attack_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=14]
+
+length = 0.4
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Thrust:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitboxes/Left/Thrust/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Thrust" ],
+"method": "play_sound"
+}, {
+"args": [  ],
+"method": "on_attack_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=15]
+
+length = 1.2
+loop = false
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/HeavyThrust:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.6, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitboxes/Right/Thrust/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Thrust" ],
+"method": "play_sound"
+}, {
+"args": [  ],
+"method": "on_attack_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=16]
+
+length = 0.4
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Swing:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitboxes/Right/Swing/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Swing" ],
+"method": "play_sound"
+}, {
+"args": [  ],
+"method": "on_attack_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=17]
+
+length = 0.4
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Thrust:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitboxes/Right/Thrust/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Thrust" ],
+"method": "play_sound"
+}, {
+"args": [  ],
+"method": "on_attack_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=18]
+
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Run:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_footstep"
+}, {
+"args": [  ],
+"method": "play_footstep"
+} ]
+}
+
+[sub_resource type="DynamicFont" id=19]
+
+size = 30
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 18 )
+_sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
+
+[node name="Player" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 2
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Pause" ]
+
+[node name="Sprites" type="Node2D" parent="." index="0"]
+
+editor/display_folded = true
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Idle" type="Sprite" parent="Sprites" index="0"]
+
+texture = ExtResource( 2 )
+offset = Vector2( 15, 0 )
+hframes = 2
+region_rect = Rect2( 64, 40, 113, 63 )
+_sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Run" type="Sprite" parent="Sprites" index="1"]
+
+visible = false
+texture = ExtResource( 3 )
+offset = Vector2( 18, 0 )
+hframes = 4
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Jump" type="Sprite" parent="Sprites" index="2"]
+
+visible = false
+texture = ExtResource( 4 )
+offset = Vector2( 11, 0 )
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Dash" type="Sprite" parent="Sprites" index="3"]
+
+visible = false
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Animation" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BlockIdle" type="Sprite" parent="Sprites" index="4"]
+
+visible = false
+texture = ExtResource( 6 )
+offset = Vector2( 20, 0 )
+hframes = 2
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BlockRun" type="Sprite" parent="Sprites" index="5"]
+
+visible = false
+texture = ExtResource( 7 )
+offset = Vector2( 23, 0 )
+hframes = 4
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Swing" type="Sprite" parent="Sprites" index="6"]
+
+visible = false
+texture = ExtResource( 8 )
+offset = Vector2( 14, 0 )
+hframes = 3
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Thrust" type="Sprite" parent="Sprites" index="7"]
+
+visible = false
+texture = ExtResource( 9 )
+offset = Vector2( 35, 0 )
+hframes = 3
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HeavyThrust" type="Sprite" parent="Sprites" index="8"]
+
+visible = false
+texture = ExtResource( 10 )
+offset = Vector2( 32, 0 )
+hframes = 3
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BowAndArrow" type="Sprite" parent="Sprites" index="9"]
+
+visible = false
+texture = ExtResource( 11 )
+offset = Vector2( 18, 0 )
+hframes = 2
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Drink" type="Sprite" parent="Sprites" index="10"]
+
+visible = false
+texture = ExtResource( 12 )
+offset = Vector2( -1, 0 )
+hframes = 4
+frame = 2
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Death" type="Sprite" parent="Sprites" index="11"]
+
+visible = false
+texture = ExtResource( 13 )
+offset = Vector2( 9, 5 )
+hframes = 3
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -21, -45, 21, -45, 21, 45, -21, 45 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Editor", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Hitboxes" type="Node2D" parent="." index="3"]
+
+editor/display_folded = true
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Right" type="Node2D" parent="Hitboxes" index="0"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Swing" type="Area2D" parent="Hitboxes/Right" index="0"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Right/Swing" index="0"]
+
+position = Vector2( 48, 6 )
+shape = SubResource( 1 )
+disabled = true
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Thrust" type="Area2D" parent="Hitboxes/Right" index="1"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Right/Thrust" index="0"]
+
+position = Vector2( 60, -3 )
+shape = SubResource( 2 )
+disabled = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Left" type="Node2D" parent="Hitboxes" index="1"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Swing" type="Area2D" parent="Hitboxes/Left" index="0"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Left/Swing" index="0"]
+
+position = Vector2( -48, 6 )
+shape = SubResource( 1 )
+disabled = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Thrust" type="Area2D" parent="Hitboxes/Left" index="1"]
+
+editor/display_folded = true
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 4
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Left/Thrust" index="0"]
+
+position = Vector2( -60, -3 )
+shape = SubResource( 2 )
+disabled = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ArrowSpawn" type="Node2D" parent="." index="4"]
+
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Left" type="Position2D" parent="ArrowSpawn" index="0"]
+
+position = Vector2( -52, 0 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Right" type="Position2D" parent="ArrowSpawn" index="1"]
+
+position = Vector2( 52, 0 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Blood" type="Particles2D" parent="." index="5"]
+
+emitting = false
+amount = 100
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = ExtResource( 14 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Healing" type="Particles2D" parent="." index="6"]
+
+position = Vector2( 0, -48 )
+rotation = 1.5708
+emitting = false
+amount = 100
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 5 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="7"]
+
+stream = SubResource( 6 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/BlockIdle = SubResource( 7 )
+anims/BlockRun = SubResource( 8 )
+anims/Death = SubResource( 9 )
+anims/Drink = SubResource( 10 )
+anims/Idle = SubResource( 11 )
+"anims/Left Heavy Thrust" = SubResource( 12 )
+"anims/Left Swing" = SubResource( 13 )
+"anims/Left Thrust" = SubResource( 14 )
+"anims/Right Heavy Thrust" = SubResource( 15 )
+"anims/Right Swing" = SubResource( 16 )
+"anims/Right Thrust" = SubResource( 17 )
+anims/Run = SubResource( 18 )
+blend_times = [  ]
+
+[node name="HUD" type="CanvasLayer" parent="." index="9"]
+
+editor/display_folded = true
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="HealthBar" type="ProgressBar" parent="HUD" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 36.0
+margin_top = 36.0
+margin_right = 414.0
+margin_bottom = 51.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+theme = ExtResource( 15 )
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = false
+_sections_unfolded = [ "Anchor", "Percent", "Theme" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StaminaBar" type="ProgressBar" parent="HUD" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 36.0
+margin_top = 54.0
+margin_right = 414.0
+margin_bottom = 63.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+theme = ExtResource( 16 )
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = false
+_sections_unfolded = [ "Percent", "Theme" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Items" type="Control" parent="HUD" index="2"]
+
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_right = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Potions" type="Sprite" parent="HUD/Items" index="0"]
+
+editor/display_folded = true
+position = Vector2( 60, -20 )
+texture = ExtResource( 17 )
+hframes = 2
+_sections_unfolded = [ "Animation", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="HUD/Items/Potions" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 16.0
+margin_top = -29.0
+margin_right = 28.0
+margin_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 19 )
+text = "0"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Material", "Visibility", "custom_fonts" ]
+
+[node name="Arrows" type="Sprite" parent="HUD/Items" index="1"]
+
+editor/display_folded = true
+position = Vector2( 132, -20 )
+texture = ExtResource( 19 )
+hframes = 2
+_sections_unfolded = [ "Animation", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="HUD/Items/Arrows" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 21.0
+margin_top = -29.0
+margin_right = 33.0
+margin_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 19 )
+text = "0"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Material", "Visibility", "custom_fonts" ]
+
+[node name="Timers" type="Node" parent="." index="10"]
+
+[node name="Dash" type="Timer" parent="Timers" index="0"]
+
+process_mode = 1
+wait_time = 0.2
+one_shot = true
+autostart = false
+
+[node name="DashWait" type="Timer" parent="Timers" index="1"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = true
+autostart = false
+
+[node name="BowAndArrow" type="Timer" parent="Timers" index="2"]
+
+process_mode = 1
+wait_time = 0.3
+one_shot = true
+autostart = false
+
+[node name="Blood" type="Timer" parent="Timers" index="3"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = true
+autostart = false
+
+[node name="Healing" type="Timer" parent="Timers" index="4"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = true
+autostart = false
+
+
