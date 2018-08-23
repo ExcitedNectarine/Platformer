@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/Buttons/Play.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Buttons/Exit.gd" type="Script" id=2]
+[ext_resource path="res://Themes/Button.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/Buttons/Play.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Buttons/Exit.gd" type="Script" id=3]
 
-[node name="CenterContainer" type="CenterContainer"]
+[node name="CenterContainer" type="CenterContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -60,6 +61,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+theme = ExtResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -67,8 +69,8 @@ group = null
 text = "Play"
 flat = false
 align = 1
-script = ExtResource( 1 )
-_sections_unfolded = [ "Rect" ]
+script = ExtResource( 2 )
+_sections_unfolded = [ "Theme" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -90,6 +92,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+theme = ExtResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -97,6 +100,7 @@ group = null
 text = "Options"
 flat = false
 align = 1
+_sections_unfolded = [ "Theme" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -118,6 +122,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+theme = ExtResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -125,6 +130,7 @@ group = null
 text = "Credits"
 flat = false
 align = 1
+_sections_unfolded = [ "Theme" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -146,6 +152,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+theme = ExtResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -153,8 +160,8 @@ group = null
 text = "Exit"
 flat = false
 align = 1
-script = ExtResource( 2 )
-_sections_unfolded = [ "Rect" ]
+script = ExtResource( 3 )
+_sections_unfolded = [ "Rect", "Theme" ]
 __meta__ = {
 "_edit_lock_": true
 }

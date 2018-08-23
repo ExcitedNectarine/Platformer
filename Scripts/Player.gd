@@ -178,8 +178,6 @@ func _physics_process(delta):
 				velocity.x += block_speed
 				
 			if is_on_floor():
-				alter_stamina((stamina_regen * delta) / 2)
-				
 				if velocity.x:
 					if state != States.BlockRun:
 						if state == States.Jump:
@@ -301,6 +299,9 @@ func _physics_process(delta):
 			alter_stamina(-shoot_cost)
 			alter_arrows(-1)
 			play_sound("Woosh")
+			
+	elif state == States.Drink:
+		alter_stamina(stamina_regen * delta)
 		
 	velocity.y += ProjectSettings.get_setting("Gravity") * delta
 	velocity = move_and_slide(velocity, Vector2(0, -1))

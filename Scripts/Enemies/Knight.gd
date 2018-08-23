@@ -3,7 +3,7 @@ extends "Enemy.gd"
 const speed = 125
 const jump = 500
 const damage = 50
-const attack_distance = 60
+const attack_distance = 100
 const attack_chance = 30
 
 var attacking = false
