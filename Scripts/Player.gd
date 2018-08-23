@@ -59,8 +59,13 @@ onready var healing_timer = $Timers/Healing
 const arrow_scene = preload("res://Scenes/Objects/Arrow.tscn")
 const enemy_script = preload("res://Scripts/Enemies/Enemy.gd")
 
-func alter_health(difference):
-	if state != States.Dash:
+func alter_health(difference, direction):
+	if blocking and facing_left != direction:
+		play_sound("Block")
+		alter_stamina(difference)
+		if not stamina:
+			.alter_health(difference / 2)
+	elif state != States.Dash:
 		if difference < 0:
 			blood.emitting = true
 			blood_timer.start()
@@ -85,7 +90,7 @@ func alter_arrows(difference):
 	arrows_icon.frame = 0 if arrows else 1
 	
 func use_potion():
-	alter_health(potion_health)
+	.alter_health(potion_health)
 	alter_potions(-1)
 	healing.emitting = true
 	healing_timer.start()
@@ -125,12 +130,10 @@ func _on_death():
 	
 func _on_body_entered_attack(body):
 	if not hit_enemy and body is enemy_script:
-		if state == States.Swing:
-			body.alter_health(-swing_damage)
-		elif state == States.Thrust:
-			body.alter_health(-thrust_damage)
-		elif state == States.HeavyThrust:
-			body.alter_health(-heavy_thrust_damage)
+		match state:
+			States.Swing: body.alter_health(-swing_damage)
+			States.Thrust: body.alter_health(-thrust_damage)
+			States.HeavyThrust: body.alter_health(-heavy_thrust_damage)
 		hit_enemy = true
 	
 func _init():
@@ -147,13 +150,13 @@ func _ready():
 		for hitbox in side.get_children():
 			hitbox.connect("body_entered", self, "_on_body_entered_attack")
 		
+	connect("death", self, "_on_death")
 	animations.connect("animation_finished", self, "_on_animation_finished")
 	dash_timer.connect("timeout", self, "_on_dash_timer_timeout")
 	dash_wait_timer.connect("timeout", self, "_on_dash_wait_timer_timeout")
 	bow_and_arrow_timer.connect("timeout", self, "_on_bow_and_arrow_timer_timeout")
 	blood_timer.connect("timeout", self, "_on_blood_timer_timeout")
 	healing_timer.connect("timeout", self, "_on_healing_timer_timeout")
-	connect("death", self, "_on_death")
 	
 	stamina_bar.max_value = max_stamina
 	stamina_bar.value = stamina

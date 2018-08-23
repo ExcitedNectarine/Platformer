@@ -53,7 +53,7 @@ func _on_player_death():
 	
 func _on_body_entered(body):
 	if not move_away and body.name == "Player":
-		body.alter_health(-damage)
+		body.alter_health(-damage, facing_left)
 		move_away = true
 		move_away_timer.wait_time = rand_range(MOVE_AWAY_MIN, MOVE_AWAY_MAX)
 		move_away_timer.start()

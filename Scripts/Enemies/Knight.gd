@@ -1,8 +1,8 @@
 extends "Enemy.gd"
 
-const speed = 100
+const speed = 125
 const jump = 500
-const damage = 30
+const damage = 50
 const attack_distance = 60
 const attack_chance = 30
 
@@ -19,7 +19,7 @@ enum States {
 	Idle,
 	ActiveIdle,
 	Run,
-	Swing,
+	Thrust,
 	Jump,
 	Dead
 }
@@ -30,8 +30,7 @@ func alter_health(difference):
 		blood.emitting = true
 		blood_timer.start()
 		play_sound("Hit")
-	if not active:
-		emit_signal("activation")
+	emit_signal("activation")
 	.alter_health(difference)
 
 func _on_animation_finished(animation_name):
@@ -86,7 +85,7 @@ func on_attack_finished():
 	animations.play("Run")
 
 func _init():
-	max_health = 75
+	max_health = 150
 	health_bar_path = "HealthBar"
 	sprite = "Idle"
 	activation_distance = 300
@@ -105,7 +104,7 @@ func _ready():
 		hitbox.connect("body_entered", self, "_on_body_enter_attack")
 
 func _physics_process(delta):
-	if not state in [States.Dead, States.Idle, States.Swing] and active:
+	if not state in [States.Dead, States.Idle, States.Thrust] and active:
 		if distance_to_player.abs().length() >= attack_distance:
 			_move_to_player_ground(speed)
 			facing_left = velocity.x <= 0
@@ -122,9 +121,9 @@ func _physics_process(delta):
 				animations.play("Idle")
 		
 		if (not (randi() % attack_chance)) and distance_to_player.abs().length() <= attack_distance:
-			state = States.Swing
-			_change_sprite("Swing")
-			animations.play("Left Swing") if facing_left else animations.play("Right Swing")
+			state = States.Thrust
+			_change_sprite("Thrust")
+			animations.play("Left Thrust") if facing_left else animations.play("Right Thrust")
 			
 		if state != States.Jump and (is_on_wall() and (velocity.x > 0 or velocity.x < 0)) and distance_to_player.abs().x >= attack_distance:
 			state = States.Jump
