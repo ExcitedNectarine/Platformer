@@ -196,6 +196,7 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="Sprites" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -203,7 +204,7 @@ __meta__ = {
 [node name="Idle" type="Sprite" parent="Sprites" index="0"]
 
 texture = ExtResource( 2 )
-offset = Vector2( 17, -1 )
+offset = Vector2( 5, -1 )
 hframes = 2
 _sections_unfolded = [ "Animation", "Offset" ]
 __meta__ = {
@@ -255,6 +256,7 @@ __meta__ = {
 
 [node name="Hitboxes" type="Node2D" parent="." index="1"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }

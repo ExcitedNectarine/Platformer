@@ -8,6 +8,7 @@ var path = PoolVector2Array()
 var distance_to_point = Vector2()
 var distance_to_player = Vector2()
 var point_distance = 2
+var spawn_position = Vector2()
 
 onready var player = $"/root/Node/Player"
 onready var navigation = $"/root/Node/Tilemaps"
@@ -44,6 +45,7 @@ func _move_to_player_air(speed):
 		velocity = distance_to_player.normalized() * speed
 
 func _ready():
+	spawn_position = position
 	path_timer.connect("timeout", self, "_update_path")
 	connect("activation", self, "_on_activation")
 	

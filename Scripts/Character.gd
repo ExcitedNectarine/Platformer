@@ -3,12 +3,11 @@ extends KinematicBody2D
 signal death
 
 var max_health = 0
-onready var health = max_health
-
 var health_bar_path = ""
-onready var health_bar = get_node(health_bar_path)
-
 var sound_directory = ""
+
+onready var health = max_health
+onready var health_bar = get_node(health_bar_path)
 onready var audio = $AudioStreamPlayer2D
 
 var facing_left = false
@@ -18,12 +17,11 @@ var sprites = {}
 var sounds = {}
 
 func alter_health(difference):
-	if health:
-		health += difference
-		health = clamp(health, 0, max_health)
-		health_bar.value = health
-		if not health:
-			emit_signal("death")
+	health += difference
+	health = clamp(health, 0, max_health)
+	health_bar.value = health
+	if not health:
+		emit_signal("death")
 		
 func play_sound(sound):
 	audio.stream.audio_stream = sounds[sound]
@@ -44,7 +42,7 @@ func _flip_sprites(flip):
 		if spr.flip_h != facing_left:
 			spr.flip_h = facing_left
 			spr.offset.x = -spr.offset.x
-
+			
 func _ready():
 	for spr in $Sprites.get_children():
 		sprites[spr.name] = spr

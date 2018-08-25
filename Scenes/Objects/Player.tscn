@@ -545,7 +545,7 @@ use_filter = false
 font_data = ExtResource( 18 )
 _sections_unfolded = [ "Extra Spacing", "Font", "Settings" ]
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 2

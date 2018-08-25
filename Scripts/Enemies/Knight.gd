@@ -3,11 +3,10 @@ extends "Enemy.gd"
 const speed = 125
 const jump = 500
 const damage = 50
-const attack_distance = 100
+const attack_distance = 80
 const attack_chance = 30
 
 var attacking = false
-var jumping = false
 var player_dead = false
 var hit_player = false
 
@@ -30,7 +29,8 @@ func alter_health(difference):
 		blood.emitting = true
 		blood_timer.start()
 		play_sound("Hit")
-	emit_signal("activation")
+	if not active:
+		emit_signal("activation")
 	.alter_health(difference)
 
 func _on_animation_finished(animation_name):
@@ -66,7 +66,6 @@ func _on_death():
 	_change_sprite("Death")
 	animations.play("Death")
 	health_bar.hide()
-	play_sound("Groan")
 	set_collision_layer_bit(2, false)
 	set_collision_mask_bit(1, false)
 	

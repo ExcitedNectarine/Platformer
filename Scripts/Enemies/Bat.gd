@@ -1,10 +1,10 @@
 extends "Enemy.gd"
 
-const MOVE_AWAY_MIN = 1.5
-const MOVE_AWAY_MAX = 4.5
+const move_away_min = 1.5
+const move_away_max = 4.5
+const speed = 100
+const damage = 10
 
-var speed = 100
-var damage = 10
 var move_away = false
 
 onready var animations = $AnimationPlayer
@@ -21,12 +21,24 @@ enum States {
 }
 var state = States.Idle
 
+func reset():
+	.reset()
+	move_away = false
+	animations.stop()
+	move_away_timer.stop()
+	blood.emitting = false
+	blood_timer.stop()
+	state = States.Idle
+	_init()
+	_ready()
+
 func alter_health(difference):
 	if difference < 0:
 		blood.emitting = true
 		blood_timer.start()
 		play_sound("Hit")
-	emit_signal("activation")
+	if not active:
+		emit_signal("activation")
 	.alter_health(difference)
 
 func _on_activation():
@@ -55,7 +67,7 @@ func _on_body_entered(body):
 	if not move_away and body.name == "Player":
 		body.alter_health(-damage, facing_left)
 		move_away = true
-		move_away_timer.wait_time = rand_range(MOVE_AWAY_MIN, MOVE_AWAY_MAX)
+		move_away_timer.wait_time = rand_range(move_away_min, move_away_max)
 		move_away_timer.start()
 		
 func _on_move_away_timer_timeout():

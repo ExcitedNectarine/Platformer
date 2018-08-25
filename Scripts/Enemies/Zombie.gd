@@ -7,7 +7,6 @@ const attack_distance = 60
 const attack_chance = 30
 
 var attacking = false
-var jumping = false
 var player_dead = false
 var hit_player = false
 
