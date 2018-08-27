@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Arrow.gd" type="Script" id=1]
-[ext_resource path="res://Textures/Player/Arrow.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Miscellaneous/Arrow.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 24, 6 )
 
-[node name="Arrow" type="Area2D"]
+[node name="Arrow" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )

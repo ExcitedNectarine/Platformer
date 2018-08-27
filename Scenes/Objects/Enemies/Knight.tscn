@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Enemies/Knight.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Enemies/Knight/Idle.png" type="Texture" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://Textures/Enemies/Knight/Thrust.png" type="Texture" id=5]
 [ext_resource path="res://Textures/Enemies/Knight/Death.png" type="Texture" id=6]
 [ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=7]
-[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=8]
+[ext_resource path="res://Themes/EnemyHealthBarMaterial.tres" type="Material" id=8]
+[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -30,10 +31,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.3, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 2 ]
+"values": [ 0, 1, 2 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -48,10 +49,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.4, 0.8 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 1, 0 ]
+"values": [ 0, 1 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -67,10 +68,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2, 1.2, 1.4, 1.8 ),
+"times": PoolRealArray( 0, 0.2, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 2, 3, 0 ]
+"values": [ 0, 1, 2, 3 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Hitboxes/Left/CollisionShape2D:disabled")
@@ -115,10 +116,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2, 1.2, 1.4, 1.8 ),
+"times": PoolRealArray( 0, 0.2, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 2, 3, 0 ]
+"values": [ 0, 1, 2, 3 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Hitboxes/Right/CollisionShape2D:disabled")
@@ -162,10 +163,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2, 0.4, 0.6, 0.8 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 2, 3, 0 ]
+"values": [ 0, 1, 2, 3 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -174,7 +175,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.4, 0.8 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -185,7 +186,7 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="Knight" type="KinematicBody2D" index="0"]
+[node name="Knight" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 4
@@ -347,6 +348,7 @@ __meta__ = {
 [node name="HealthBar" type="ProgressBar" parent="." index="4"]
 
 visible = false
+material = ExtResource( 8 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -361,7 +363,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-theme = ExtResource( 8 )
+theme = ExtResource( 9 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -370,7 +372,7 @@ value = 0.0
 exp_edit = false
 rounded = false
 percent_visible = false
-_sections_unfolded = [ "Percent", "Theme", "Visibility" ]
+_sections_unfolded = [ "Material", "Percent", "Theme", "Visibility" ]
 __meta__ = {
 "_edit_lock_": true
 }

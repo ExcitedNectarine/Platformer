@@ -28,7 +28,8 @@ var blocking = false
 var can_dash = true
 var potions = starting_potions
 var arrows = starting_arrows
-var shrine = null
+var shrine_position = null
+var spawn_position = null
 
 enum States {
 	Idle,
@@ -50,33 +51,43 @@ onready var animations = $AnimationPlayer
 onready var dash_timer = $Timers/Dash
 onready var dash_wait_timer = $Timers/DashWait
 onready var bow_and_arrow_timer = $Timers/BowAndArrow
-onready var stamina_bar = $HUD/StaminaBar
-onready var potions_icon = $HUD/Items/Potions
-onready var potions_left = $HUD/Items/Potions/Label
-onready var arrows_icon = $HUD/Items/Arrows
-onready var arrows_left = $HUD/Items/Arrows/Label
+onready var stamina_bar = $HUD/Bars/MarginContainer/VBoxContainer/StaminaBar
+onready var potions_icon = $HUD/Items/MarginContainer/HBoxContainer/Potions/Texture
+onready var potions_left = $HUD/Items/MarginContainer/HBoxContainer/Potions/Amount
+onready var arrows_icon = $HUD/Items/MarginContainer/HBoxContainer/Arrows/Texture
+onready var arrows_left = $HUD/Items/MarginContainer/HBoxContainer/Arrows/Amount
+onready var prompt = $HUD/Prompt
 onready var blood = $Blood
 onready var blood_timer = $Timers/Blood
 onready var healing = $Healing
 onready var healing_timer = $Timers/Healing
 
-const arrow_scene = preload("res://Scenes/Objects/Arrow.tscn")
+const arrow_scene = preload("res://Scenes/Objects/Miscellaneous/Arrow.tscn")
 const enemy_script = preload("res://Scripts/Enemies/Enemy.gd")
+const full_potion = preload("res://Textures/Player/Potion.png")
+const empty_potion = preload("res://Textures/Player/EmptyPotion.png")
+const full_quiver = preload("res://Textures/Player/Quiver.png")
+const empty_quiver = preload("res://Textures/Player/EmptyQuiver.png")
+
+func show_prompt():
+	prompt.visible = true
+	
+func hide_prompt():
+	prompt.visible = false
 
 # Resets the player, used when at a checkpoint.
 func reset():
 	.alter_health(100)
 	alter_stamina(100)
 	potions = starting_potions
-	potions_icon.frame = 0
+	potions_icon.texture = full_potion
 	potions_left.text = str(potions)
 	arrows = starting_arrows
-	arrows_icon.frame = 0
+	arrows_icon.texture = full_quiver
 	arrows_left.text = str(arrows)
 	state = States.Idle
 	_change_sprite("Idle")
 	animations.play("Idle")
-	sprites["Death"].frame = 0
 
 func alter_health(difference, direction):
 	if blocking and facing_left != direction:
@@ -99,14 +110,14 @@ func alter_stamina(difference):
 func alter_potions(difference):
 	potions += difference
 	potions = clamp(potions, 0, max_potions)
+	potions_icon.texture = full_potion if potions else empty_potion
 	potions_left.text = str(potions)
-	potions_icon.frame = 0 if potions else 1
 		
 func alter_arrows(difference):
 	arrows += difference
 	arrows = clamp(arrows, 0, max_arrows)
+	arrows_icon.texture = full_quiver if arrows else empty_quiver
 	arrows_left.text = str(arrows)
-	arrows_icon.frame = 0 if arrows else 1
 	
 func use_potion():
 	.alter_health(potion_health)
@@ -159,7 +170,7 @@ func _on_body_entered_attack(body):
 func _init():
 	max_health = 100
 	sprite = "Idle"
-	health_bar_path = "HUD/HealthBar"
+	health_bar_path = "HUD//Bars/MarginContainer/VBoxContainer/HealthBar"
 	sound_directory = "res://Sounds"
 
 func _ready():
@@ -188,6 +199,8 @@ func _ready():
 	
 	ProjectSettings.set_setting("Gravity", 980)
 	animations.play("Idle")
+	
+	spawn_position = position
 
 func _physics_process(delta):
 	if not state in [States.Swing, States.Thrust, States.Dash, States.Drink, States.Dead, States.Drawn, States.HeavyThrust]:

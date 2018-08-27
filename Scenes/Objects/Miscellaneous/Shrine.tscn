@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Usables/Shrine.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Miscellaneous/Shrine.png" type="Texture" id=2]
+[ext_resource path="res://Textures/Miscellaneous/Light.png" type="Texture" id=3]
+[ext_resource path="res://Sounds/Shrine.wav" type="AudioStream" id=4]
 
 [sub_resource type="Gradient" id=1]
 
@@ -53,6 +55,11 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Gravity", "Initial Velocity", "Spread" ]
 
+[sub_resource type="AudioStreamRandomPitch" id=4]
+
+audio_stream = ExtResource( 4 )
+random_pitch = 1.1
+
 [node name="Shrine" type="Area2D"]
 
 input_pickable = true
@@ -76,7 +83,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Particles2D" type="Particles2D" parent="." index="1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array( -42, -36, 42, -36, 42, 36, -42, 36 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Particles2D" type="Particles2D" parent="." index="2"]
 
 position = Vector2( 0, -15 )
 emitting = false
@@ -97,15 +112,49 @@ texture = null
 normal_map = null
 h_frames = 1
 v_frames = 1
-_sections_unfolded = [ "Process Material", "Time", "Transform" ]
+_sections_unfolded = [ "Drawing", "Process Material", "Time", "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+[node name="Light2D" type="Light2D" parent="." index="3"]
 
-build_mode = 0
-polygon = PoolVector2Array( -42, -36, 42, -36, 42, 36, -42, 36 )
+enabled = false
+editor_only = false
+texture = ExtResource( 3 )
+offset = Vector2( 0, 0 )
+texture_scale = 1.0
+color = Color( 1, 1, 0, 1 )
+energy = 1.0
+mode = 0
+range_height = 0.0
+range_z_min = -1024
+range_z_max = 1024
+range_layer_min = 0
+range_layer_max = 0
+range_item_cull_mask = 1
+shadow_enabled = true
+shadow_color = Color( 0, 0, 0, 0 )
+shadow_buffer_size = 2048
+shadow_gradient_length = 0.0
+shadow_filter = 0
+shadow_filter_smooth = 0.0
+shadow_item_cull_mask = 1
+_sections_unfolded = [ "Shadow" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
+
+stream = SubResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 __meta__ = {
 "_edit_lock_": true
 }

@@ -14,6 +14,13 @@ config/name="Platformer"
 run/main_scene="res://Scenes/Scenes/MainMenu.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/size/resizable=false
+window/vsync/use_vsync=false
+
 [input]
 
 Left=[ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
@@ -49,5 +56,5 @@ Use=[ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_na
 [rendering]
 
 quality/2d/use_pixel_snap=true
-environment/default_clear_color=Color( 0.128906, 0.128906, 0.128906, 1 )
+environment/default_clear_color=Color( 0.0980392, 0.0980392, 0.0980392, 1 )
 environment/default_environment="res://default_env.tres"

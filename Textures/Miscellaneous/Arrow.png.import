@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Castle.png-fd09200c23fb6ecf214029db089c411b.stex"
+path="res://.import/Arrow.png-baaa24cf6bc4f037634a9aa08d196dd0.stex"
 
 [deps]
 
-source_file="res://Textures/TileSets/Castle.png"
-dest_files=[ "res://.import/Castle.png-fd09200c23fb6ecf214029db089c411b.stex" ]
+source_file="res://Textures/Miscellaneous/Arrow.png"
+dest_files=[ "res://.import/Arrow.png-baaa24cf6bc4f037634a9aa08d196dd0.stex" ]
 
 [params]
 

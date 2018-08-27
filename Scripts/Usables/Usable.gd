@@ -6,10 +6,12 @@ func activate():
 func _on_body_entered(body):
 	if body.name == "Player":
 		set_physics_process(true)
+		body.show_prompt()
 		
 func _on_body_exited(body):
 	if body.name == "Player":
 		set_physics_process(false)
+		body.hide_prompt()
 		
 func _ready():
 	set_physics_process(false)

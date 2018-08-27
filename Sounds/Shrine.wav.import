@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Shrine.wav-f1fe8b36a6d489d46310bab8b4f0b757.sample"
+
+[deps]
+
+source_file="res://Sounds/Shrine.wav"
+dest_files=[ "res://.import/Shrine.wav-f1fe8b36a6d489d46310bab8b4f0b757.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=false
+edit/loop=false
+compress/mode=0
