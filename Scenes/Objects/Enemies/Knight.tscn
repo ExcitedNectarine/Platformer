@@ -1,14 +1,21 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://Scripts/Enemies/Knight.gd" type="Script" id=1]
-[ext_resource path="res://Textures/Enemies/Knight/Idle.png" type="Texture" id=2]
-[ext_resource path="res://Textures/Enemies/Knight/Run.png" type="Texture" id=3]
-[ext_resource path="res://Textures/Enemies/Knight/Jump.png" type="Texture" id=4]
-[ext_resource path="res://Textures/Enemies/Knight/Thrust.png" type="Texture" id=5]
-[ext_resource path="res://Textures/Enemies/Knight/Death.png" type="Texture" id=6]
-[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=7]
-[ext_resource path="res://Themes/EnemyHealthBarMaterial.tres" type="Material" id=8]
-[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=9]
+[ext_resource path="res://Scripts/Enemies/Knight/Knight.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Enemies/Knight/States/Idle.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemies/Knight/States/ActiveIdle.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Enemies/Knight/States/Run.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Enemies/Knight/States/Jump.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Enemies/Knight/States/Fall.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Enemies/Knight/States/Thrust.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Enemies/Knight/States/Dead.gd" type="Script" id=8]
+[ext_resource path="res://Textures/Enemies/Knight/Idle.png" type="Texture" id=9]
+[ext_resource path="res://Textures/Enemies/Knight/Run.png" type="Texture" id=10]
+[ext_resource path="res://Textures/Enemies/Knight/Jump.png" type="Texture" id=11]
+[ext_resource path="res://Textures/Enemies/Knight/Thrust.png" type="Texture" id=12]
+[ext_resource path="res://Textures/Enemies/Knight/Death.png" type="Texture" id=13]
+[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=14]
+[ext_resource path="res://Themes/EnemyHealthBarMaterial.tres" type="Material" id=15]
+[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -186,7 +193,7 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="Knight" type="KinematicBody2D"]
+[node name="Knight" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 4
@@ -195,7 +202,37 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 
-[node name="Sprites" type="Node2D" parent="." index="0"]
+[node name="States" type="Node" parent="." index="0"]
+
+[node name="Idle" type="Node" parent="States" index="0"]
+
+script = ExtResource( 2 )
+
+[node name="ActiveIdle" type="Node" parent="States" index="1"]
+
+script = ExtResource( 3 )
+
+[node name="Run" type="Node" parent="States" index="2"]
+
+script = ExtResource( 4 )
+
+[node name="Jump" type="Node" parent="States" index="3"]
+
+script = ExtResource( 5 )
+
+[node name="Fall" type="Node" parent="States" index="4"]
+
+script = ExtResource( 6 )
+
+[node name="Thrust" type="Node" parent="States" index="5"]
+
+script = ExtResource( 7 )
+
+[node name="Dead" type="Node" parent="States" index="6"]
+
+script = ExtResource( 8 )
+
+[node name="Sprites" type="Node2D" parent="." index="1"]
 
 editor/display_folded = true
 __meta__ = {
@@ -204,7 +241,7 @@ __meta__ = {
 
 [node name="Idle" type="Sprite" parent="Sprites" index="0"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 9 )
 offset = Vector2( 5, -1 )
 hframes = 2
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -215,7 +252,7 @@ __meta__ = {
 [node name="Run" type="Sprite" parent="Sprites" index="1"]
 
 visible = false
-texture = ExtResource( 3 )
+texture = ExtResource( 10 )
 offset = Vector2( 17, -3 )
 hframes = 4
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -226,7 +263,7 @@ __meta__ = {
 [node name="Jump" type="Sprite" parent="Sprites" index="2"]
 
 visible = false
-texture = ExtResource( 4 )
+texture = ExtResource( 11 )
 offset = Vector2( 17, -3 )
 _sections_unfolded = [ "Animation", "Offset" ]
 __meta__ = {
@@ -236,7 +273,7 @@ __meta__ = {
 [node name="Thrust" type="Sprite" parent="Sprites" index="3"]
 
 visible = false
-texture = ExtResource( 5 )
+texture = ExtResource( 12 )
 offset = Vector2( 24, -1 )
 hframes = 4
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -247,7 +284,7 @@ __meta__ = {
 [node name="Death" type="Sprite" parent="Sprites" index="4"]
 
 visible = false
-texture = ExtResource( 6 )
+texture = ExtResource( 13 )
 offset = Vector2( 35, -1 )
 hframes = 3
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -255,7 +292,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Hitboxes" type="Node2D" parent="." index="1"]
+[node name="Hitboxes" type="Node2D" parent="." index="2"]
 
 editor/display_folded = true
 __meta__ = {
@@ -312,7 +349,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3"]
 
 build_mode = 0
 polygon = PoolVector2Array( -21, -42, -21, 54, 21, 54, 21, -42 )
@@ -320,7 +357,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Blood" type="Particles2D" parent="." index="3"]
+[node name="Blood" type="Particles2D" parent="." index="4"]
 
 emitting = false
 amount = 100
@@ -335,7 +372,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = ExtResource( 7 )
+process_material = ExtResource( 14 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -345,10 +382,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="HealthBar" type="ProgressBar" parent="." index="4"]
+[node name="HealthBar" type="ProgressBar" parent="." index="5"]
 
 visible = false
-material = ExtResource( 8 )
+material = ExtResource( 15 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -363,7 +400,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-theme = ExtResource( 9 )
+theme = ExtResource( 16 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -377,7 +414,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="5"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="6"]
 
 stream = SubResource( 2 )
 volume_db = 0.0
@@ -391,7 +428,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -405,7 +442,9 @@ anims/Idle = SubResource( 4 )
 anims/Run = SubResource( 7 )
 blend_times = [  ]
 
-[node name="Timers" type="Node" parent="." index="7"]
+[node name="Timers" type="Node" parent="." index="8"]
+
+editor/display_folded = true
 
 [node name="Path" type="Timer" parent="Timers" index="0"]
 

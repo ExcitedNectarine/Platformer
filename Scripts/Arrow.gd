@@ -2,7 +2,7 @@ extends Area2D
 
 var speed = 750
 var go_left = false
-var damage = 20
+var damage = 0
 
 const enemy_script = preload("res://Scripts/Enemies/Enemy.gd")
 

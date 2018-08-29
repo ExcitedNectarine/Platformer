@@ -1,12 +1,14 @@
 extends Area2D
 
+var text = ""
+
 func activate():
 	pass
 
 func _on_body_entered(body):
 	if body.name == "Player":
 		set_physics_process(true)
-		body.show_prompt()
+		body.show_prompt(text)
 		
 func _on_body_exited(body):
 	if body.name == "Player":

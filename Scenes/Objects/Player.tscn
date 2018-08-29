@@ -1,25 +1,38 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=54 format=2]
 
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Textures/Player/Idle.png" type="Texture" id=2]
-[ext_resource path="res://Textures/Player/Run.png" type="Texture" id=3]
-[ext_resource path="res://Textures/Player/Jump.png" type="Texture" id=4]
-[ext_resource path="res://Textures/Player/Dash.png" type="Texture" id=5]
-[ext_resource path="res://Textures/Player/BlockIdle.png" type="Texture" id=6]
-[ext_resource path="res://Textures/Player/BlockRun.png" type="Texture" id=7]
-[ext_resource path="res://Textures/Player/Swing.png" type="Texture" id=8]
-[ext_resource path="res://Textures/Player/Thrust.png" type="Texture" id=9]
-[ext_resource path="res://Textures/Player/HeavyThrust.png" type="Texture" id=10]
-[ext_resource path="res://Textures/Player/BowAndArrow.png" type="Texture" id=11]
-[ext_resource path="res://Textures/Player/Drink.png" type="Texture" id=12]
-[ext_resource path="res://Textures/Player/Death.png" type="Texture" id=13]
-[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=14]
-[ext_resource path="res://Themes/Panel.tres" type="StyleBox" id=15]
-[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=16]
-[ext_resource path="res://Themes/StaminaBar.tres" type="Theme" id=17]
-[ext_resource path="res://Textures/Player/Potion.png" type="Texture" id=18]
-[ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=19]
-[ext_resource path="res://Textures/Player/Quiver.png" type="Texture" id=20]
+[ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Player/States/Idle.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Player/States/Run.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Player/States/Jump.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Player/States/Fall.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Player/States/BlockIdle.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Player/States/BlockRun.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Player/States/Dash.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Player/States/Swing.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Player/States/Thrust.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Player/States/HeavyThrust.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Player/States/Drawn.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/Player/States/Drink.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/Player/States/Dead.gd" type="Script" id=14]
+[ext_resource path="res://Textures/Player/Idle.png" type="Texture" id=15]
+[ext_resource path="res://Textures/Player/Run.png" type="Texture" id=16]
+[ext_resource path="res://Textures/Player/Jump.png" type="Texture" id=17]
+[ext_resource path="res://Textures/Player/Dash.png" type="Texture" id=18]
+[ext_resource path="res://Textures/Player/BlockIdle.png" type="Texture" id=19]
+[ext_resource path="res://Textures/Player/BlockRun.png" type="Texture" id=20]
+[ext_resource path="res://Textures/Player/Swing.png" type="Texture" id=21]
+[ext_resource path="res://Textures/Player/Thrust.png" type="Texture" id=22]
+[ext_resource path="res://Textures/Player/HeavyThrust.png" type="Texture" id=23]
+[ext_resource path="res://Textures/Player/BowAndArrow.png" type="Texture" id=24]
+[ext_resource path="res://Textures/Player/Drink.png" type="Texture" id=25]
+[ext_resource path="res://Textures/Player/Death.png" type="Texture" id=26]
+[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=27]
+[ext_resource path="res://Themes/Panel.tres" type="StyleBox" id=28]
+[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=29]
+[ext_resource path="res://Themes/StaminaBar.tres" type="Theme" id=30]
+[ext_resource path="res://Textures/Player/Potion.png" type="Texture" id=31]
+[ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=32]
+[ext_resource path="res://Textures/Player/Quiver.png" type="Texture" id=33]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -543,7 +556,7 @@ tracks/1/keys = {
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 19 )
+font_data = ExtResource( 32 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=20]
@@ -551,7 +564,7 @@ _sections_unfolded = [ "Font", "Settings" ]
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 19 )
+font_data = ExtResource( 32 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [node name="Player" type="KinematicBody2D"]
@@ -563,8 +576,63 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pause", "collision" ]
 
-[node name="Sprites" type="Node2D" parent="." index="0"]
+[node name="States" type="Node" parent="." index="0"]
 
+[node name="Idle" type="Node" parent="States" index="0"]
+
+script = ExtResource( 2 )
+
+[node name="Run" type="Node" parent="States" index="1"]
+
+script = ExtResource( 3 )
+
+[node name="Jump" type="Node" parent="States" index="2"]
+
+script = ExtResource( 4 )
+
+[node name="Fall" type="Node" parent="States" index="3"]
+
+script = ExtResource( 5 )
+
+[node name="BlockIdle" type="Node" parent="States" index="4"]
+
+script = ExtResource( 6 )
+
+[node name="BlockRun" type="Node" parent="States" index="5"]
+
+script = ExtResource( 7 )
+
+[node name="Dash" type="Node" parent="States" index="6"]
+
+script = ExtResource( 8 )
+
+[node name="Swing" type="Node" parent="States" index="7"]
+
+script = ExtResource( 9 )
+
+[node name="Thrust" type="Node" parent="States" index="8"]
+
+script = ExtResource( 10 )
+
+[node name="HeavyThrust" type="Node" parent="States" index="9"]
+
+script = ExtResource( 11 )
+
+[node name="Drawn" type="Node" parent="States" index="10"]
+
+script = ExtResource( 12 )
+
+[node name="Drink" type="Node" parent="States" index="11"]
+
+script = ExtResource( 13 )
+
+[node name="Dead" type="Node" parent="States" index="12"]
+
+script = ExtResource( 14 )
+
+[node name="Sprites" type="Node2D" parent="." index="1"]
+
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -572,7 +640,7 @@ __meta__ = {
 
 [node name="Idle" type="Sprite" parent="Sprites" index="0"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 15 )
 offset = Vector2( 15, 0 )
 hframes = 2
 region_rect = Rect2( 64, 40, 113, 63 )
@@ -584,7 +652,7 @@ __meta__ = {
 [node name="Run" type="Sprite" parent="Sprites" index="1"]
 
 visible = false
-texture = ExtResource( 3 )
+texture = ExtResource( 16 )
 offset = Vector2( 18, 0 )
 hframes = 4
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -595,7 +663,7 @@ __meta__ = {
 [node name="Jump" type="Sprite" parent="Sprites" index="2"]
 
 visible = false
-texture = ExtResource( 4 )
+texture = ExtResource( 17 )
 offset = Vector2( 11, 0 )
 _sections_unfolded = [ "Animation", "Offset" ]
 __meta__ = {
@@ -605,7 +673,7 @@ __meta__ = {
 [node name="Dash" type="Sprite" parent="Sprites" index="3"]
 
 visible = false
-texture = ExtResource( 5 )
+texture = ExtResource( 18 )
 _sections_unfolded = [ "Animation" ]
 __meta__ = {
 "_edit_lock_": true
@@ -614,7 +682,7 @@ __meta__ = {
 [node name="BlockIdle" type="Sprite" parent="Sprites" index="4"]
 
 visible = false
-texture = ExtResource( 6 )
+texture = ExtResource( 19 )
 offset = Vector2( 20, 0 )
 hframes = 2
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -625,7 +693,7 @@ __meta__ = {
 [node name="BlockRun" type="Sprite" parent="Sprites" index="5"]
 
 visible = false
-texture = ExtResource( 7 )
+texture = ExtResource( 20 )
 offset = Vector2( 23, 0 )
 hframes = 4
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -636,7 +704,7 @@ __meta__ = {
 [node name="Swing" type="Sprite" parent="Sprites" index="6"]
 
 visible = false
-texture = ExtResource( 8 )
+texture = ExtResource( 21 )
 offset = Vector2( 14, 0 )
 hframes = 3
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -647,7 +715,7 @@ __meta__ = {
 [node name="Thrust" type="Sprite" parent="Sprites" index="7"]
 
 visible = false
-texture = ExtResource( 9 )
+texture = ExtResource( 22 )
 offset = Vector2( 35, 0 )
 hframes = 3
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -658,7 +726,7 @@ __meta__ = {
 [node name="HeavyThrust" type="Sprite" parent="Sprites" index="8"]
 
 visible = false
-texture = ExtResource( 10 )
+texture = ExtResource( 23 )
 offset = Vector2( 32, 0 )
 hframes = 3
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -669,7 +737,7 @@ __meta__ = {
 [node name="BowAndArrow" type="Sprite" parent="Sprites" index="9"]
 
 visible = false
-texture = ExtResource( 11 )
+texture = ExtResource( 24 )
 offset = Vector2( 18, 0 )
 hframes = 2
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -680,7 +748,7 @@ __meta__ = {
 [node name="Drink" type="Sprite" parent="Sprites" index="10"]
 
 visible = false
-texture = ExtResource( 12 )
+texture = ExtResource( 25 )
 offset = Vector2( -1, 0 )
 hframes = 4
 frame = 2
@@ -692,7 +760,7 @@ __meta__ = {
 [node name="Death" type="Sprite" parent="Sprites" index="11"]
 
 visible = false
-texture = ExtResource( 13 )
+texture = ExtResource( 26 )
 offset = Vector2( 9, 5 )
 hframes = 3
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -700,7 +768,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
 
 build_mode = 0
 polygon = PoolVector2Array( -21, -45, 21, -45, 21, 45, -21, 45 )
@@ -709,7 +777,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Hitboxes" type="Node2D" parent="." index="2"]
+[node name="Hitboxes" type="Node2D" parent="." index="3"]
 
 editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
@@ -719,6 +787,7 @@ __meta__ = {
 
 [node name="Right" type="Node2D" parent="Hitboxes" index="0"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -778,6 +847,7 @@ __meta__ = {
 
 [node name="Left" type="Node2D" parent="Hitboxes" index="1"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -834,7 +904,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ArrowSpawn" type="Node2D" parent="." index="3"]
+[node name="ArrowSpawn" type="Node2D" parent="." index="4"]
 
 editor/display_folded = true
 __meta__ = {
@@ -857,7 +927,66 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera2D" type="Camera2D" parent="." index="4"]
+[node name="Particles" type="Node2D" parent="." index="5"]
+
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Blood" type="Particles2D" parent="Particles" index="0"]
+
+emitting = false
+amount = 100
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = ExtResource( 27 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Healing" type="Particles2D" parent="Particles" index="1"]
+
+position = Vector2( 0, -48 )
+rotation = 1.5708
+emitting = false
+amount = 100
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 5 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time", "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="." index="6"]
 
 anchor_mode = 1
 rotating = false
@@ -882,58 +1011,6 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Blood" type="Particles2D" parent="." index="5"]
-
-emitting = false
-amount = 100
-lifetime = 1.0
-one_shot = false
-preprocess = 0.0
-speed_scale = 1.0
-explosiveness = 0.0
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = true
-draw_order = 0
-process_material = ExtResource( 14 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Process Material", "Time" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Healing" type="Particles2D" parent="." index="6"]
-
-position = Vector2( 0, -48 )
-rotation = 1.5708
-emitting = false
-amount = 100
-lifetime = 1.0
-one_shot = false
-preprocess = 0.0
-speed_scale = 1.0
-explosiveness = 0.0
-randomness = 0.0
-fixed_fps = 0
-fract_delta = true
-visibility_rect = Rect2( -100, -100, 200, 200 )
-local_coords = true
-draw_order = 0
-process_material = SubResource( 5 )
-texture = null
-normal_map = null
-h_frames = 1
-v_frames = 1
-_sections_unfolded = [ "Process Material", "Time", "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -975,7 +1052,6 @@ blend_times = [  ]
 
 [node name="HUD" type="CanvasLayer" parent="." index="9"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -999,7 +1075,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 15 )
+custom_styles/panel = ExtResource( 28 )
 _sections_unfolded = [ "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
@@ -1067,7 +1143,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-theme = ExtResource( 16 )
+theme = ExtResource( 29 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -1097,7 +1173,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-theme = ExtResource( 17 )
+theme = ExtResource( 30 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -1128,7 +1204,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 15 )
+custom_styles/panel = ExtResource( 28 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1214,7 +1290,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 18 )
+texture = ExtResource( 31 )
 stretch_mode = 4
 __meta__ = {
 "_edit_lock_": true
@@ -1282,7 +1358,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 20 )
+texture = ExtResource( 33 )
 stretch_mode = 4
 __meta__ = {
 "_edit_lock_": true
@@ -1324,18 +1400,19 @@ anchor_left = 1.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 0.0
-margin_left = -160.0
+margin_left = -44.0
 margin_top = 36.0
-margin_right = -34.0
+margin_right = -32.0
 margin_bottom = 75.0
+grow_horizontal = 0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 15 )
-_sections_unfolded = [ "Anchor", "Margin", "custom_styles" ]
+custom_styles/panel = ExtResource( 28 )
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1348,7 +1425,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 3.0
 margin_top = 3.0
-margin_right = 123.0
+margin_right = 9.0
 margin_bottom = 36.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1356,8 +1433,8 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_constants/margin_right = 3
-custom_constants/margin_left = 3
+custom_constants/margin_right = 6
+custom_constants/margin_left = 6
 _sections_unfolded = [ "custom_constants" ]
 __meta__ = {
 "_edit_lock_": true
@@ -1369,8 +1446,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 3.0
-margin_right = 117.0
+margin_left = 6.0
+margin_right = 6.0
 margin_bottom = 33.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1379,7 +1456,6 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 20 )
-text = "Y to Use"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -1391,8 +1467,6 @@ __meta__ = {
 }
 
 [node name="Timers" type="Node" parent="." index="10"]
-
-editor/display_folded = true
 
 [node name="Dash" type="Timer" parent="Timers" index="0"]
 

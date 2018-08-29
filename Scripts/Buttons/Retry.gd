@@ -10,7 +10,7 @@ func _on_button_down():
 		player.position = player.spawn_position
 	enemies.respawn()
 	player.reset()
-	$"../../../../../CenterContainer".visible = false
+	$"../../../../../../Control".visible = false
 
 func _ready():
 	connect("button_down", self, "_on_button_down")

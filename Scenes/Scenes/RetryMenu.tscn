@@ -14,13 +14,51 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="CenterContainer" type="CenterContainer" parent="." index="0"]
+[node name="Control" type="Control" parent="." index="0"]
 
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Control" index="1"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -679.0
+margin_top = -382.0
+margin_right = 679.0
+margin_bottom = 382.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -29,22 +67,21 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 use_top_left = false
-script = ExtResource( 1 )
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Pause", "Rect" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" index="0"]
+[node name="PanelContainer" type="PanelContainer" parent="Control/CenterContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 509.0
-margin_top = 297.0
-margin_right = 515.0
-margin_bottom = 303.0
+margin_left = 676.0
+margin_top = 379.0
+margin_right = 682.0
+margin_bottom = 385.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -56,7 +93,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/CenterContainer/PanelContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -81,7 +118,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CenterContainer/PanelContainer/MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -105,7 +142,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Retry" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+[node name="Retry" type="Button" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -135,7 +172,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Quit" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+[node name="Quit" type="Button" parent="Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0

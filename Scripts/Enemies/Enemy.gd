@@ -22,8 +22,8 @@ func _on_activation():
 	health_bar.visible = true
 	_update_path()
 	path_timer.start()
-
-func _move_to_player_ground(speed):
+	
+func move_to_player_ground(speed):
 	if path.size() > 1:
 		distance_to_point = path[0] - position
 		if distance_to_point.abs().x > point_distance:
@@ -33,7 +33,7 @@ func _move_to_player_ground(speed):
 	else:
 		velocity.x = distance_to_player.normalized().x * speed
 		
-func _move_to_player_air(speed):
+func move_to_player_air(speed):
 	if path.size() > 1:
 		distance_to_point = path[0] - position
 		if distance_to_point.abs().length() > point_distance:

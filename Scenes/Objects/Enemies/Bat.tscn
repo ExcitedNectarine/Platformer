@@ -1,12 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Scripts/Enemies/Bat.gd" type="Script" id=1]
-[ext_resource path="res://Textures/Enemies/Bat/Fly.png" type="Texture" id=2]
-[ext_resource path="res://Textures/Enemies/Bat/Fall.png" type="Texture" id=3]
-[ext_resource path="res://Textures/Enemies/Bat/Death.png" type="Texture" id=4]
-[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=5]
-[ext_resource path="res://Themes/EnemyHealthBarMaterial.tres" type="Material" id=6]
-[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=7]
+[ext_resource path="res://Scripts/Enemies/Bat/Bat.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Enemies/Bat/States/Idle.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemies/Bat/States/Fly.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Enemies/Bat/States/Fall.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Enemies/Bat/States/Dead.gd" type="Script" id=5]
+[ext_resource path="res://Textures/Enemies/Bat/Fly.png" type="Texture" id=6]
+[ext_resource path="res://Textures/Enemies/Bat/Fall.png" type="Texture" id=7]
+[ext_resource path="res://Textures/Enemies/Bat/Death.png" type="Texture" id=8]
+[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=9]
+[ext_resource path="res://Themes/EnemyHealthBarMaterial.tres" type="Material" id=10]
+[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -45,16 +49,33 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 
-[node name="Sprites" type="Node2D" parent="." index="0"]
+[node name="States" type="Node" parent="." index="0"]
 
-editor/display_folded = true
+[node name="Idle" type="Node" parent="States" index="0"]
+
+script = ExtResource( 2 )
+
+[node name="Fly" type="Node" parent="States" index="1"]
+
+script = ExtResource( 3 )
+
+[node name="Fall" type="Node" parent="States" index="2"]
+
+script = ExtResource( 4 )
+
+[node name="Dead" type="Node" parent="States" index="3"]
+
+script = ExtResource( 5 )
+
+[node name="Sprites" type="Node2D" parent="." index="1"]
+
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Fly" type="Sprite" parent="Sprites" index="0"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 6 )
 hframes = 2
 _sections_unfolded = [ "Animation" ]
 __meta__ = {
@@ -64,7 +85,7 @@ __meta__ = {
 [node name="Fall" type="Sprite" parent="Sprites" index="1"]
 
 visible = false
-texture = ExtResource( 3 )
+texture = ExtResource( 7 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -72,12 +93,12 @@ __meta__ = {
 [node name="Death" type="Sprite" parent="Sprites" index="2"]
 
 visible = false
-texture = ExtResource( 4 )
+texture = ExtResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Hitbox" type="Area2D" parent="." index="1"]
+[node name="Hitbox" type="Area2D" parent="." index="2"]
 
 editor/display_folded = true
 input_pickable = true
@@ -101,7 +122,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3"]
 
 build_mode = 0
 polygon = PoolVector2Array( 21, 9, -21, 9, -21, -12, 21, -12 )
@@ -109,7 +130,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Blood" type="Particles2D" parent="." index="3"]
+[node name="Blood" type="Particles2D" parent="." index="4"]
 
 emitting = false
 amount = 100
@@ -124,7 +145,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = ExtResource( 5 )
+process_material = ExtResource( 9 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -134,10 +155,10 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="HealthBar" type="ProgressBar" parent="." index="4"]
+[node name="HealthBar" type="ProgressBar" parent="." index="5"]
 
 visible = false
-material = ExtResource( 6 )
+material = ExtResource( 10 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -152,7 +173,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-theme = ExtResource( 7 )
+theme = ExtResource( 11 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -166,7 +187,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="5"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="6"]
 
 stream = SubResource( 2 )
 volume_db = 0.0
@@ -180,7 +201,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -190,7 +211,9 @@ playback_speed = 1.0
 anims/Fly = SubResource( 3 )
 blend_times = [  ]
 
-[node name="Timers" type="Node" parent="." index="7"]
+[node name="Timers" type="Node" parent="." index="8"]
+
+editor/display_folded = true
 
 [node name="Path" type="Timer" parent="Timers" index="0"]
 
