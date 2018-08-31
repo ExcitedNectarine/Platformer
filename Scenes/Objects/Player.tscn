@@ -1,19 +1,19 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=56 format=2]
 
-[ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Player/States/Idle.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Player/States/Run.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Player/States/Jump.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Player/States/Fall.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/Player/States/BlockIdle.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/Player/States/BlockRun.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/Player/States/Dash.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Player/States/Swing.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/Player/States/Thrust.gd" type="Script" id=10]
-[ext_resource path="res://Scripts/Player/States/HeavyThrust.gd" type="Script" id=11]
-[ext_resource path="res://Scripts/Player/States/Drawn.gd" type="Script" id=12]
-[ext_resource path="res://Scripts/Player/States/Drink.gd" type="Script" id=13]
-[ext_resource path="res://Scripts/Player/States/Dead.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/Characters/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Characters/Player/States/Idle.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Characters/Player/States/Run.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Characters/Player/States/Jump.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Characters/Player/States/Fall.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Characters/Player/States/BlockIdle.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Characters/Player/States/BlockRun.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Characters/Player/States/Dash.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Characters/Player/States/Swing.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Characters/Player/States/Thrust.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Characters/Player/States/HeavyThrust.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Characters/Player/States/Drawn.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/Characters/Player/States/Drink.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/Characters/Player/States/Dead.gd" type="Script" id=14]
 [ext_resource path="res://Textures/Player/Idle.png" type="Texture" id=15]
 [ext_resource path="res://Textures/Player/Run.png" type="Texture" id=16]
 [ext_resource path="res://Textures/Player/Jump.png" type="Texture" id=17]
@@ -26,36 +26,46 @@
 [ext_resource path="res://Textures/Player/BowAndArrow.png" type="Texture" id=24]
 [ext_resource path="res://Textures/Player/Drink.png" type="Texture" id=25]
 [ext_resource path="res://Textures/Player/Death.png" type="Texture" id=26]
-[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=27]
-[ext_resource path="res://Themes/Panel.tres" type="StyleBox" id=28]
-[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=29]
-[ext_resource path="res://Themes/StaminaBar.tres" type="Theme" id=30]
-[ext_resource path="res://Textures/Player/Potion.png" type="Texture" id=31]
-[ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=32]
-[ext_resource path="res://Textures/Player/Quiver.png" type="Texture" id=33]
+[ext_resource path="res://Sounds/Hit.wav" type="AudioStream" id=27]
+[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=28]
+[ext_resource path="res://Themes/Panel.tres" type="StyleBox" id=29]
+[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=30]
+[ext_resource path="res://Themes/StaminaBar.tres" type="Theme" id=31]
+[ext_resource path="res://Textures/Player/Potion.png" type="Texture" id=32]
+[ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=33]
+[ext_resource path="res://Textures/Player/Quiver.png" type="Texture" id=34]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="AudioStreamRandomPitch" id=1]
+
+random_pitch = 1.1
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
+
+audio_stream = ExtResource( 27 )
+random_pitch = 1.1
+
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 27, 39 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 39, 12 )
 
-[sub_resource type="Gradient" id=3]
+[sub_resource type="Gradient" id=5]
 
 offsets = PoolRealArray( 0, 1 )
 colors = PoolColorArray( 1, 1, 0, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=4]
+[sub_resource type="GradientTexture" id=6]
 
 flags = 4
-gradient = SubResource( 3 )
+gradient = SubResource( 5 )
 width = 2048
 
-[sub_resource type="ParticlesMaterial" id=5]
+[sub_resource type="ParticlesMaterial" id=7]
 
 render_priority = 0
 trail_divisor = 1
@@ -85,7 +95,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 3.0
 scale_random = 0.0
-color_ramp = SubResource( 4 )
+color_ramp = SubResource( 6 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -95,11 +105,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Scale", "Spread" ]
 
-[sub_resource type="AudioStreamRandomPitch" id=6]
-
-random_pitch = 1.1
-
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 
 length = 0.8
 loop = true
@@ -117,7 +123,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 
 length = 1.2
 loop = true
@@ -152,7 +158,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 
 length = 0.6
 loop = false
@@ -170,7 +176,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 
 length = 1.2
 loop = false
@@ -216,7 +222,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 
 length = 0.8
 loop = true
@@ -234,7 +240,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=13]
 
 length = 1.2
 loop = false
@@ -281,7 +287,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=14]
 
 length = 0.4
 loop = false
@@ -328,7 +334,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=15]
 
 length = 0.4
 loop = false
@@ -375,7 +381,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=16]
 
 length = 1.2
 loop = false
@@ -422,7 +428,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=17]
 
 length = 0.4
 loop = false
@@ -469,7 +475,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=18]
 
 length = 0.4
 loop = false
@@ -516,7 +522,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=19]
 
 length = 0.8
 loop = true
@@ -551,23 +557,23 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="DynamicFont" id=19]
-
-size = 32
-use_mipmaps = false
-use_filter = false
-font_data = ExtResource( 32 )
-_sections_unfolded = [ "Font", "Settings" ]
-
 [sub_resource type="DynamicFont" id=20]
 
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 32 )
+font_data = ExtResource( 33 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Player" type="KinematicBody2D"]
+[sub_resource type="DynamicFont" id=21]
+
+size = 32
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 33 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 2
@@ -577,6 +583,8 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pause", "collision" ]
 
 [node name="States" type="Node" parent="." index="0"]
+
+editor/display_folded = true
 
 [node name="Idle" type="Node" parent="States" index="0"]
 
@@ -768,7 +776,42 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+[node name="Audio" type="Node2D" parent="." index="2"]
+
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Other" type="AudioStreamPlayer2D" parent="Audio" index="0"]
+
+stream = SubResource( 1 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="Audio" index="1"]
+
+stream = SubResource( 2 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3"]
 
 build_mode = 0
 polygon = PoolVector2Array( -21, -45, 21, -45, 21, 45, -21, 45 )
@@ -777,7 +820,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Hitboxes" type="Node2D" parent="." index="3"]
+[node name="Hitboxes" type="Node2D" parent="." index="4"]
 
 editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
@@ -812,7 +855,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Right/Swing" index="0"]
 
 position = Vector2( 48, 6 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 disabled = true
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -839,7 +882,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Right/Thrust" index="0"]
 
 position = Vector2( 60, -3 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 disabled = true
 __meta__ = {
 "_edit_lock_": true
@@ -872,7 +915,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Left/Swing" index="0"]
 
 position = Vector2( -48, 6 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 disabled = true
 __meta__ = {
 "_edit_lock_": true
@@ -898,13 +941,13 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Left/Thrust" index="0"]
 
 position = Vector2( -60, -3 )
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 disabled = true
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ArrowSpawn" type="Node2D" parent="." index="4"]
+[node name="ArrowSpawn" type="Node2D" parent="." index="5"]
 
 editor/display_folded = true
 __meta__ = {
@@ -927,7 +970,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Particles" type="Node2D" parent="." index="5"]
+[node name="Particles" type="Node2D" parent="." index="6"]
 
 editor/display_folded = true
 __meta__ = {
@@ -949,7 +992,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = ExtResource( 27 )
+process_material = ExtResource( 28 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -976,7 +1019,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 5 )
+process_material = SubResource( 7 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -986,7 +1029,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Camera2D" type="Camera2D" parent="." index="6"]
+[node name="Camera2D" type="Camera2D" parent="." index="7"]
 
 anchor_mode = 1
 rotating = false
@@ -1015,20 +1058,6 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="7"]
-
-stream = SubResource( 6 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
 
 root_node = NodePath("..")
@@ -1036,22 +1065,23 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/BlockIdle = SubResource( 7 )
-anims/BlockRun = SubResource( 8 )
-anims/Death = SubResource( 9 )
-anims/Drink = SubResource( 10 )
-anims/Idle = SubResource( 11 )
-"anims/Left Heavy Thrust" = SubResource( 12 )
-"anims/Left Swing" = SubResource( 13 )
-"anims/Left Thrust" = SubResource( 14 )
-"anims/Right Heavy Thrust" = SubResource( 15 )
-"anims/Right Swing" = SubResource( 16 )
-"anims/Right Thrust" = SubResource( 17 )
-anims/Run = SubResource( 18 )
+anims/BlockIdle = SubResource( 8 )
+anims/BlockRun = SubResource( 9 )
+anims/Death = SubResource( 10 )
+anims/Drink = SubResource( 11 )
+anims/Idle = SubResource( 12 )
+"anims/Left Heavy Thrust" = SubResource( 13 )
+"anims/Left Swing" = SubResource( 14 )
+"anims/Left Thrust" = SubResource( 15 )
+"anims/Right Heavy Thrust" = SubResource( 16 )
+"anims/Right Swing" = SubResource( 17 )
+"anims/Right Thrust" = SubResource( 18 )
+anims/Run = SubResource( 19 )
 blend_times = [  ]
 
 [node name="HUD" type="CanvasLayer" parent="." index="9"]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -1075,7 +1105,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 28 )
+custom_styles/panel = ExtResource( 29 )
 _sections_unfolded = [ "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
@@ -1143,7 +1173,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-theme = ExtResource( 29 )
+theme = ExtResource( 30 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -1173,7 +1203,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-theme = ExtResource( 30 )
+theme = ExtResource( 31 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -1204,7 +1234,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 28 )
+custom_styles/panel = ExtResource( 29 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1290,7 +1320,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 31 )
+texture = ExtResource( 32 )
 stretch_mode = 4
 __meta__ = {
 "_edit_lock_": true
@@ -1312,7 +1342,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 20 )
 text = "0"
 align = 1
 valign = 1
@@ -1358,7 +1388,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 stretch_mode = 4
 __meta__ = {
 "_edit_lock_": true
@@ -1380,7 +1410,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 19 )
+custom_fonts/font = SubResource( 20 )
 text = "0"
 align = 1
 valign = 1
@@ -1411,7 +1441,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 28 )
+custom_styles/panel = ExtResource( 29 )
 _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
@@ -1455,7 +1485,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 20 )
+custom_fonts/font = SubResource( 21 )
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -1467,6 +1497,8 @@ __meta__ = {
 }
 
 [node name="Timers" type="Node" parent="." index="10"]
+
+editor/display_folded = true
 
 [node name="Dash" type="Timer" parent="Timers" index="0"]
 

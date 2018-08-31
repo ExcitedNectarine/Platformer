@@ -1,0 +1,541 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/HammerKnight.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/Idle.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/ActiveIdle.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/Run.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/Swing.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/Dead.gd" type="Script" id=6]
+[ext_resource path="res://Textures/Enemies/HammerKnight/Idle.png" type="Texture" id=7]
+[ext_resource path="res://Textures/Enemies/HammerKnight/Run.png" type="Texture" id=8]
+[ext_resource path="res://Textures/Enemies/HammerKnight/Swing.png" type="Texture" id=9]
+[ext_resource path="res://Textures/Enemies/HammerKnight/Death.png" type="Texture" id=10]
+[ext_resource path="res://Sounds/Hit.wav" type="AudioStream" id=11]
+[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=12]
+[ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Themes/EnemyHealthBarMaterial.tres" type="Material" id=14]
+[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=15]
+
+[sub_resource type="AudioStreamRandomPitch" id=1]
+
+random_pitch = 1.1
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
+
+audio_stream = ExtResource( 11 )
+random_pitch = 1.1
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 42, 63 )
+
+[sub_resource type="DynamicFont" id=9]
+
+size = 32
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 13 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="Animation" id=4]
+
+resource_name = "Death"
+length = 1.2
+loop = false
+step = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Death:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=5]
+
+resource_name = "Idle"
+length = 1.0
+loop = true
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=6]
+
+resource_name = "Left Swing"
+length = 2.4
+loop = false
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Swing:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.6, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitboxes/Left/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.6, 1.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.6, 2.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Swing" ],
+"method": "play_sound"
+}, {
+"args": [  ],
+"method": "on_attack_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=7]
+
+resource_name = "Right Swing"
+length = 2.4
+loop = false
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Swing:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.6, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitboxes/Right/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.6, 1.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.6, 2.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Swing" ],
+"method": "play_sound"
+}, {
+"args": [  ],
+"method": "on_attack_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=8]
+
+resource_name = "Run"
+length = 1.2
+loop = true
+step = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Run:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_footstep"
+}, {
+"args": [  ],
+"method": "play_footstep"
+} ]
+}
+
+[node name="HammerKnight" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 4
+collision_mask = 3
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="States" type="Node" parent="." index="0"]
+
+editor/display_folded = true
+
+[node name="Idle" type="Node" parent="States" index="0"]
+
+script = ExtResource( 2 )
+
+[node name="ActiveIdle" type="Node" parent="States" index="1"]
+
+script = ExtResource( 3 )
+
+[node name="Run" type="Node" parent="States" index="2"]
+
+script = ExtResource( 4 )
+
+[node name="Swing" type="Node" parent="States" index="3"]
+
+script = ExtResource( 5 )
+
+[node name="Dead" type="Node" parent="States" index="4"]
+
+script = ExtResource( 6 )
+
+[node name="Sprites" type="Node2D" parent="." index="1"]
+
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Idle" type="Sprite" parent="Sprites" index="0"]
+
+texture = ExtResource( 7 )
+offset = Vector2( 9, 0 )
+hframes = 2
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Run" type="Sprite" parent="Sprites" index="1"]
+
+visible = false
+texture = ExtResource( 8 )
+offset = Vector2( 11, -1 )
+hframes = 4
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Swing" type="Sprite" parent="Sprites" index="2"]
+
+visible = false
+texture = ExtResource( 9 )
+offset = Vector2( 36, -3 )
+hframes = 5
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Death" type="Sprite" parent="Sprites" index="3"]
+
+visible = false
+texture = ExtResource( 10 )
+offset = Vector2( 45, 2 )
+hframes = 4
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Audio" type="Node2D" parent="." index="2"]
+
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Other" type="AudioStreamPlayer2D" parent="Audio" index="0"]
+
+stream = SubResource( 1 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="Audio" index="1"]
+
+stream = SubResource( 2 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Hitboxes" type="Node2D" parent="." index="3"]
+
+editor/display_folded = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Right" type="Area2D" parent="Hitboxes" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Right" index="0"]
+
+position = Vector2( 69, 18 )
+shape = SubResource( 3 )
+disabled = true
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Left" type="Area2D" parent="Hitboxes" index="1"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Left" index="0"]
+
+position = Vector2( -69, 18 )
+shape = SubResource( 3 )
+disabled = true
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="4"]
+
+build_mode = 0
+polygon = PoolVector2Array( -27, 81, -27, -63, 27, -63, 27, 81 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Blood" type="Particles2D" parent="." index="5"]
+
+emitting = false
+amount = 100
+lifetime = 1.0
+one_shot = false
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 0.3
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = ExtResource( 12 )
+texture = null
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Process Material", "Time" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HUD" type="CanvasLayer" parent="." index="6"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD" index="0"]
+
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -400.0
+margin_top = -120.0
+margin_right = 400.0
+margin_bottom = -65.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Name" type="Label" parent="HUD/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 800.0
+margin_bottom = 33.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 9 )
+text = "Hammer Knight"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HealthBar" type="ProgressBar" parent="HUD/VBoxContainer" index="1"]
+
+material = ExtResource( 14 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 37.0
+margin_right = 800.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 800, 18 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+theme = ExtResource( 15 )
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = false
+_sections_unfolded = [ "Material", "Percent", "Rect", "Theme", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Timers" type="Node" parent="." index="7"]
+
+editor/display_folded = true
+
+[node name="Path" type="Timer" parent="Timers" index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Blood" type="Timer" parent="Timers" index="1"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = true
+autostart = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Death = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+"anims/Left Swing" = SubResource( 6 )
+"anims/Right Swing" = SubResource( 7 )
+anims/Run = SubResource( 8 )
+blend_times = [  ]
+
+

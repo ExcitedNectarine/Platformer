@@ -7,10 +7,14 @@ func _init():
 	text = "Y to Pray"
 
 func activate():
-	if not $Particles2D.emitting:
-		$AudioStreamPlayer2D.play()
+	if not $Particles/Activated.emitting:
+		$Audio/Activated.play()
+		if not $Audio/FireCrackle.playing:
+			$Audio/FireCrackle.play()
 		$Sprite.frame = 1
-		$Particles2D.emitting = true
+		$Particles/Activated.emitting = true
+		if not $Particles/Active.emitting:
+			$Particles/Active.emitting = true
 		$Light2D.enabled = true
 		player.shrine_position = position
 		player.reset()
