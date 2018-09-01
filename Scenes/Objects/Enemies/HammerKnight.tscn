@@ -1,20 +1,24 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/HammerKnight.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/Idle.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/ActiveIdle.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/Run.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/Swing.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/Dead.gd" type="Script" id=6]
-[ext_resource path="res://Textures/Enemies/HammerKnight/Idle.png" type="Texture" id=7]
-[ext_resource path="res://Textures/Enemies/HammerKnight/Run.png" type="Texture" id=8]
-[ext_resource path="res://Textures/Enemies/HammerKnight/Swing.png" type="Texture" id=9]
-[ext_resource path="res://Textures/Enemies/HammerKnight/Death.png" type="Texture" id=10]
-[ext_resource path="res://Sounds/Hit.wav" type="AudioStream" id=11]
-[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=12]
-[ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=13]
-[ext_resource path="res://Themes/EnemyHealthBarMaterial.tres" type="Material" id=14]
-[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=15]
+[ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/JumpSwing.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/MagicThrow.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Characters/Enemies/HammerKnight/States/Dead.gd" type="Script" id=8]
+[ext_resource path="res://Textures/Enemies/HammerKnight/Idle.png" type="Texture" id=9]
+[ext_resource path="res://Textures/Enemies/HammerKnight/Run.png" type="Texture" id=10]
+[ext_resource path="res://Textures/Enemies/HammerKnight/Swing.png" type="Texture" id=11]
+[ext_resource path="res://Textures/Enemies/HammerKnight/JumpSwing.png" type="Texture" id=12]
+[ext_resource path="res://Textures/Enemies/HammerKnight/MagicThrow.png" type="Texture" id=13]
+[ext_resource path="res://Textures/Enemies/HammerKnight/Death.png" type="Texture" id=14]
+[ext_resource path="res://Sounds/Hit.wav" type="AudioStream" id=15]
+[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=16]
+[ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://Themes/EnemyHealthBarMaterial.tres" type="Material" id=18]
+[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=19]
 
 [sub_resource type="AudioStreamRandomPitch" id=1]
 
@@ -22,7 +26,7 @@ random_pitch = 1.1
 
 [sub_resource type="AudioStreamRandomPitch" id=2]
 
-audio_stream = ExtResource( 11 )
+audio_stream = ExtResource( 15 )
 random_pitch = 1.1
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -30,17 +34,16 @@ random_pitch = 1.1
 custom_solver_bias = 0.0
 extents = Vector2( 42, 63 )
 
-[sub_resource type="DynamicFont" id=9]
+[sub_resource type="DynamicFont" id=4]
 
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 13 )
+font_data = ExtResource( 17 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 
-resource_name = "Death"
 length = 1.2
 loop = false
 step = 0.3
@@ -57,9 +60,8 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 
-resource_name = "Idle"
 length = 1.0
 loop = true
 step = 0.5
@@ -76,20 +78,20 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 
-resource_name = "Left Swing"
-length = 2.4
+resource_name = "Left Jump Swing"
+length = 2.0
 loop = false
 step = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Swing:frame")
+tracks/0/path = NodePath("Sprites/JumpSwing:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.6, 1.8 ),
+"times": PoolRealArray( 0, 0.2, 0.6, 1.4, 1.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4 ]
@@ -101,7 +103,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1.6, 1.8 ),
+"times": PoolRealArray( 1.4, 1.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -113,7 +115,68 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.6, 2.4 ),
+"times": PoolRealArray( 1.4, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Swing" ],
+"method": "play_sound"
+}, {
+"args": [  ],
+"method": "on_attack_finished"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("States/JumpSwing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "jump"
+} ]
+}
+
+[sub_resource type="Animation" id=8]
+
+length = 2.0
+loop = false
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Swing:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitboxes/Left/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.2, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ "Swing" ],
@@ -124,20 +187,66 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 
-resource_name = "Right Swing"
-length = 2.4
+resource_name = "Magic Throw"
+length = 0.6
 loop = false
 step = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Swing:frame")
+tracks/0/path = NodePath("Sprites/MagicThrow:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.6, 1.8 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("States/MagicThrow")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_magic_shot"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_attack_finished"
+} ]
+}
+
+[sub_resource type="Animation" id=10]
+
+length = 2.0
+loop = false
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/JumpSwing:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 1.4, 1.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4 ]
@@ -149,7 +258,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1.6, 1.8 ),
+"times": PoolRealArray( 1.4, 1.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -161,7 +270,68 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.6, 2.4 ),
+"times": PoolRealArray( 1.4, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Swing" ],
+"method": "play_sound"
+}, {
+"args": [  ],
+"method": "on_attack_finished"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("States/JumpSwing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "jump"
+} ]
+}
+
+[sub_resource type="Animation" id=11]
+
+length = 2.0
+loop = false
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Swing:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hitboxes/Right/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.2, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.2, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [ "Swing" ],
@@ -172,9 +342,8 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=12]
 
-resource_name = "Run"
 length = 1.2
 loop = true
 step = 0.3
@@ -208,7 +377,7 @@ tracks/1/keys = {
 } ]
 }
 
-[node name="HammerKnight" type="KinematicBody2D" index="0"]
+[node name="HammerKnight" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 4
@@ -218,8 +387,6 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 
 [node name="States" type="Node" parent="." index="0"]
-
-editor/display_folded = true
 
 [node name="Idle" type="Node" parent="States" index="0"]
 
@@ -237,20 +404,27 @@ script = ExtResource( 4 )
 
 script = ExtResource( 5 )
 
-[node name="Dead" type="Node" parent="States" index="4"]
+[node name="JumpSwing" type="Node" parent="States" index="4"]
 
 script = ExtResource( 6 )
 
+[node name="MagicThrow" type="Node" parent="States" index="5"]
+
+script = ExtResource( 7 )
+
+[node name="Dead" type="Node" parent="States" index="6"]
+
+script = ExtResource( 8 )
+
 [node name="Sprites" type="Node2D" parent="." index="1"]
 
-editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Idle" type="Sprite" parent="Sprites" index="0"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 9 )
 offset = Vector2( 9, 0 )
 hframes = 2
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -261,7 +435,7 @@ __meta__ = {
 [node name="Run" type="Sprite" parent="Sprites" index="1"]
 
 visible = false
-texture = ExtResource( 8 )
+texture = ExtResource( 10 )
 offset = Vector2( 11, -1 )
 hframes = 4
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -272,7 +446,7 @@ __meta__ = {
 [node name="Swing" type="Sprite" parent="Sprites" index="2"]
 
 visible = false
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 offset = Vector2( 36, -3 )
 hframes = 5
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -280,10 +454,33 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Death" type="Sprite" parent="Sprites" index="3"]
+[node name="JumpSwing" type="Sprite" parent="Sprites" index="3"]
 
 visible = false
-texture = ExtResource( 10 )
+texture = ExtResource( 12 )
+offset = Vector2( 21, -12 )
+hframes = 5
+frame = 2
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MagicThrow" type="Sprite" parent="Sprites" index="4"]
+
+visible = false
+texture = ExtResource( 13 )
+offset = Vector2( 6, -15 )
+hframes = 3
+_sections_unfolded = [ "Animation", "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Death" type="Sprite" parent="Sprites" index="5"]
+
+visible = false
+texture = ExtResource( 14 )
 offset = Vector2( 45, 2 )
 hframes = 4
 _sections_unfolded = [ "Animation", "Offset" ]
@@ -385,7 +582,14 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="4"]
+[node name="MagicShotSpawn" type="Position2D" parent="." index="4"]
+
+position = Vector2( -18, -84 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="5"]
 
 build_mode = 0
 polygon = PoolVector2Array( -27, 81, -27, -63, 27, -63, 27, 81 )
@@ -394,7 +598,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Blood" type="Particles2D" parent="." index="5"]
+[node name="Blood" type="Particles2D" parent="." index="6"]
 
 emitting = false
 amount = 100
@@ -409,7 +613,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = ExtResource( 12 )
+process_material = ExtResource( 16 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -419,7 +623,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="HUD" type="CanvasLayer" parent="." index="6"]
+[node name="HUD" type="CanvasLayer" parent="." index="7"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -463,7 +667,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 4 )
 text = "Hammer Knight"
 align = 1
 valign = 1
@@ -477,7 +681,7 @@ __meta__ = {
 
 [node name="HealthBar" type="ProgressBar" parent="HUD/VBoxContainer" index="1"]
 
-material = ExtResource( 14 )
+material = ExtResource( 18 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -492,7 +696,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-theme = ExtResource( 15 )
+theme = ExtResource( 19 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -506,7 +710,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Timers" type="Node" parent="." index="7"]
+[node name="Timers" type="Node" parent="." index="8"]
 
 editor/display_folded = true
 
@@ -524,18 +728,22 @@ wait_time = 0.1
 one_shot = true
 autostart = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9"]
 
 root_node = NodePath("..")
 autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/Death = SubResource( 4 )
-anims/Idle = SubResource( 5 )
-"anims/Left Swing" = SubResource( 6 )
-"anims/Right Swing" = SubResource( 7 )
-anims/Run = SubResource( 8 )
+anims/Death = SubResource( 5 )
+anims/Idle = SubResource( 6 )
+"anims/Left Jump Swing" = SubResource( 7 )
+"anims/Left Swing" = SubResource( 8 )
+"anims/Magic Throw" = SubResource( 9 )
+"anims/Right Jump Swing" = SubResource( 10 )
+"anims/Right Swing" = SubResource( 11 )
+anims/Run = SubResource( 12 )
 blend_times = [  ]
+_sections_unfolded = [ "Playback Options" ]
 
 

@@ -50,6 +50,7 @@ func _init():
 	activation_distance = 300
 	sound_directory = "res://Sounds"
 	add_states = ["Jump", "Fall", "Thrust"]
+	points = 250
 
 func _ready():
 	connect("death", self, "_on_death")

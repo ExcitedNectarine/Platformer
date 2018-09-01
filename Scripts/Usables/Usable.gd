@@ -2,6 +2,8 @@ extends Area2D
 
 var text = ""
 
+onready var player = $"/root/Node/Player"
+
 func activate():
 	pass
 
@@ -22,5 +24,5 @@ func _ready():
 	connect("body_exited", self, "_on_body_exited")
 	
 func _physics_process(delta):
-	if Input.is_action_just_pressed("Use"):
+	if Input.is_action_just_pressed("Use") and player.state_name != "Dead":
 		activate()

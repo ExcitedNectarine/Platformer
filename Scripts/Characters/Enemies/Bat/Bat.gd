@@ -37,6 +37,7 @@ func _init():
 	sound_directory = "res://Sounds"
 	sprite = "Fly"
 	activation_distance = 400
+	points = 50
 	
 func _ready():
 	change_state("Idle")

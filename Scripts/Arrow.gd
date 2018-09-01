@@ -11,7 +11,7 @@ func _on_body_entered(body):
 		if body is ENEMY_SCRIPT:
 			body.alter_health(-damage)
 		$Sprite.visible = false
-		$CollisionShape2D.disabled = true
+		$Hitbox.disabled = true
 		$Particles2D.emitting = false
 		set_physics_process(false)
 		$DeleteTimer.start()

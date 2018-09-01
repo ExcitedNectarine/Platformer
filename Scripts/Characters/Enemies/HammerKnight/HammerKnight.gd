@@ -1,7 +1,6 @@
 extends "res://Scripts/Characters/Enemies/Enemy.gd"
 
 const ATTACK_DISTANCE = 80
-const ATTACK_CHANCE = 30
 
 var hit_player = false
 
@@ -25,6 +24,7 @@ func _on_player_death():
 		change_state("Idle")
 		$HUD/VBoxContainer.visible = false
 		path_timer.stop()
+		velocity.x = 0
 	
 		for hitbox in $Hitboxes.get_children():
 			hitbox.get_node("CollisionShape2D").disabled = true
@@ -51,7 +51,8 @@ func _init():
 	sprite = "Idle"
 	activation_distance = 500
 	sound_directory = "res://Sounds"
-	add_states = ["Swing"]
+	add_states = ["Swing", "JumpSwing", "MagicThrow"]
+	points = 1500
 
 func _ready():
 	connect("death", self, "_on_death")

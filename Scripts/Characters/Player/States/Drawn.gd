@@ -2,7 +2,7 @@ extends "res://Scripts/Characters/State.gd"
 
 const COST = 30
 const DAMAGE = 30
-const ARROW_SCENE = preload("res://Scenes/Objects/Miscellaneous/Arrow.tscn")
+const ARROW_SCENE = preload("res://Scenes/Objects/Projectiles/Arrow.tscn")
 
 onready var sprite = $"../../Sprites/BowAndArrow"
 onready var projectiles = $"/root/Node/Projectiles"

@@ -18,6 +18,7 @@ const EMPTY_QUIVER = preload("res://Textures/Player/EmptyQuiver.png")
 var stamina = MAX_STAMINA
 var potions = STARTING_POTIONS
 var arrows = STARTING_ARROWS
+var points = 0
 var hit_enemy = false
 var shrine_position = null
 var spawn_position = null
@@ -30,6 +31,7 @@ onready var potions_icon = $HUD/Items/MarginContainer/HBoxContainer/Potions/Text
 onready var potions_left = $HUD/Items/MarginContainer/HBoxContainer/Potions/Amount
 onready var arrows_icon = $HUD/Items/MarginContainer/HBoxContainer/Arrows/Texture
 onready var arrows_left = $HUD/Items/MarginContainer/HBoxContainer/Arrows/Amount
+onready var current_points = $HUD/Points/MarginContainer/Label
 onready var prompt = $HUD/Prompt
 onready var blood = $Particles/Blood
 onready var healing = $Particles/Healing
@@ -48,8 +50,8 @@ func hide_prompt():
 Resets the player. Used when at a checkpoint.
 """
 func reset():
-	.alter_health(100)
-	alter_stamina(100)
+	.alter_health(max_health)
+	alter_stamina(MAX_STAMINA)
 	
 	potions = STARTING_POTIONS
 	potions_icon.texture = FULL_POTION
@@ -94,6 +96,12 @@ func alter_arrows(difference):
 	arrows = clamp(arrows, 0, MAX_ARROWS)
 	arrows_icon.texture = FULL_QUIVER if arrows else EMPTY_QUIVER
 	arrows_left.text = str(arrows)
+	
+func alter_points(difference):
+	points += difference
+	if points < 0:
+		points = 0
+	current_points.text = str(points)
 	
 func has_stamina(cost):
 	return stamina >= cost

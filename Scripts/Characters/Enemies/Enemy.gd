@@ -9,6 +9,7 @@ var distance_to_point = Vector2()
 var distance_to_player = Vector2()
 var point_distance = 2
 var spawn_position = Vector2()
+var points = 0
 
 onready var player = $"/root/Node/Player"
 onready var navigation = $"/root/Node/Tilemaps"
@@ -30,6 +31,9 @@ func alter_health(difference):
 
 func _update_path():
 	path = navigation.get_simple_path(position, player.position, false)
+	
+func _add_points():
+	player.alter_points(points)
 	
 func _on_activation():
 	active = true
@@ -72,6 +76,7 @@ func move_to_player_air(speed):
 func _ready():
 	spawn_position = position
 	connect("activation", self, "_on_activation")
+	connect("death", self, "_add_points")
 	path_timer.connect("timeout", self, "_update_path")
 	blood_timer.connect("timeout", self, "_on_blood_timer_timeout")
 	

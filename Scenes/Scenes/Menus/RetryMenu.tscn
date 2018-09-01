@@ -15,9 +15,9 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="RetryMenu" type="CanvasLayer" index="0"]
+[node name="RetryMenu" type="CanvasLayer"]
 
-layer = 1
+layer = 2
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )

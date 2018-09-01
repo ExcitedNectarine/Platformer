@@ -22,7 +22,7 @@ func update(delta):
 	if not host.test_move(host.transform, Vector2(0, 1)):
 		return "Fall"
 		
-	if Input.is_action_just_released("Block"):
+	if not Input.is_action_pressed("Block"):
 		return "Run"
 	elif Input.is_action_pressed("Light"):
 		return "Thrust"

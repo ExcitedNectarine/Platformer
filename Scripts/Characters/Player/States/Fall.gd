@@ -7,6 +7,8 @@ func enter():
 	host.animations.stop()
 	
 func update(delta):
+	host.alter_stamina(host.STAMINA_REGEN * delta)
+	
 	if Input.is_action_pressed("Left"):
 		host.velocity.x = -SPEED
 	elif Input.is_action_pressed("Right"):

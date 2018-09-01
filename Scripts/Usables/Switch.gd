@@ -3,7 +3,7 @@ extends "Usable.gd"
 signal activation
 
 func _init():
-	text = "Y to Flip"
+	text = "Flip"
 
 func activate():
 	if not $Sprite.frame:
