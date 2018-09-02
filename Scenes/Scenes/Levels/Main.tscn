@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://TileSets/Castle.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Objects/Usables/Shrine.tscn" type="PackedScene" id=2]
@@ -12,8 +12,9 @@
 [ext_resource path="res://Scenes/Objects/Enemies/HammerKnight.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Scenes/Menus/PauseMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Scenes/Menus/RetryMenu.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Scenes/Menus/ShrineMenu.tscn" type="PackedScene" id=13]
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" index="0"]
 
 [node name="Tilemaps" type="Navigation2D" parent="." index="0"]
 
@@ -121,5 +122,7 @@ __meta__ = {
 [node name="PauseMenu" parent="." index="6" instance=ExtResource( 11 )]
 
 [node name="RetryMenu" parent="." index="7" instance=ExtResource( 12 )]
+
+[node name="ShrineMenu" parent="." index="8" instance=ExtResource( 13 )]
 
 

@@ -1,16 +1,13 @@
 extends "Usable.gd"
 
 onready var enemies = $"/root/Node/Enemies"
+onready var menu = $"/root/Node/ShrineMenu"
 
 func _init():
 	text = "Pray"
 
 func activate():
-	if player.state_name == "Praying":
-		player.change_state("Idle")
-		player.show_prompt(text)
-		
-	elif not $Particles/Activated.emitting:
+	if not $Particles/Activated.emitting and player.state_name != "Praying":
 		if not $Audio/FireCrackle.playing:
 			$Audio/FireCrackle.play()
 		if not $Particles/Active.emitting:
@@ -23,7 +20,10 @@ func activate():
 		
 		player.shrine_position = position
 		player.reset()
-		player.show_prompt("Exit")
 		player.change_state("Praying")
 		
 		enemies.respawn()
+		
+		menu.get_node("Control").visible = true
+		menu.get_node("Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelUp").grab_focus()
+		menu.set_text()

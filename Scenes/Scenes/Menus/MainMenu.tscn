@@ -118,7 +118,7 @@ text = "Play"
 flat = false
 align = 1
 script = ExtResource( 3 )
-_sections_unfolded = [ "Theme" ]
+_sections_unfolded = [ "Rect", "Theme" ]
 __meta__ = {
 "_edit_lock_": true
 }

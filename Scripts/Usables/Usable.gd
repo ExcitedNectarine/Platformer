@@ -8,12 +8,12 @@ func activate():
 	pass
 
 func _on_body_entered(body):
-	if body.name == "Player":
+	if body.name == "Player" and not body.prompt.visible:
 		set_physics_process(true)
 		body.show_prompt(text)
 		
 func _on_body_exited(body):
-	if body.name == "Player":
+	if body.name == "Player" and body.prompt.visible:
 		set_physics_process(false)
 		body.hide_prompt()
 		

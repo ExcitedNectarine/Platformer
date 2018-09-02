@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=62 format=2]
 
 [ext_resource path="res://Scripts/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Characters/Player/States/Idle.gd" type="Script" id=2]
@@ -27,14 +27,15 @@
 [ext_resource path="res://Textures/Player/BowAndArrow.png" type="Texture" id=25]
 [ext_resource path="res://Textures/Player/Drink.png" type="Texture" id=26]
 [ext_resource path="res://Textures/Player/Death.png" type="Texture" id=27]
-[ext_resource path="res://Sounds/Hit.wav" type="AudioStream" id=28]
-[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=29]
-[ext_resource path="res://Themes/Panel.tres" type="StyleBox" id=30]
-[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=31]
-[ext_resource path="res://Themes/StaminaBar.tres" type="Theme" id=32]
-[ext_resource path="res://Textures/Player/Potion.png" type="Texture" id=33]
-[ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=34]
-[ext_resource path="res://Textures/Player/Quiver.png" type="Texture" id=35]
+[ext_resource path="res://Textures/Player/Praying.png" type="Texture" id=28]
+[ext_resource path="res://Sounds/Hit.wav" type="AudioStream" id=29]
+[ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=30]
+[ext_resource path="res://Themes/Panel.tres" type="StyleBox" id=31]
+[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=32]
+[ext_resource path="res://Themes/StaminaBar.tres" type="Theme" id=33]
+[ext_resource path="res://Textures/Player/Potion.png" type="Texture" id=34]
+[ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=35]
+[ext_resource path="res://Textures/Player/Quiver.png" type="Texture" id=36]
 
 [sub_resource type="AudioStreamRandomPitch" id=1]
 
@@ -42,7 +43,7 @@ random_pitch = 1.1
 
 [sub_resource type="AudioStreamRandomPitch" id=2]
 
-audio_stream = ExtResource( 28 )
+audio_stream = ExtResource( 29 )
 random_pitch = 1.1
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -613,7 +614,7 @@ tracks/1/keys = {
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 34 )
+font_data = ExtResource( 35 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=24]
@@ -621,7 +622,7 @@ _sections_unfolded = [ "Font", "Settings" ]
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 34 )
+font_data = ExtResource( 35 )
 _sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="DynamicFont" id=25]
@@ -629,10 +630,10 @@ _sections_unfolded = [ "Font", "Settings" ]
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 34 )
+font_data = ExtResource( 35 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 2
@@ -837,6 +838,16 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Praying" type="Sprite" parent="Sprites" index="12"]
+
+visible = false
+texture = ExtResource( 28 )
+offset = Vector2( -1, 5 )
+_sections_unfolded = [ "Offset" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="Audio" type="Node2D" parent="." index="2"]
 
 editor/display_folded = true
@@ -1033,6 +1044,7 @@ __meta__ = {
 
 [node name="Particles" type="Node2D" parent="." index="6"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1052,7 +1064,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = ExtResource( 29 )
+process_material = ExtResource( 30 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -1166,6 +1178,7 @@ blend_times = [  ]
 
 [node name="HUD" type="CanvasLayer" parent="." index="9"]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -1189,7 +1202,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 30 )
+custom_styles/panel = ExtResource( 31 )
 _sections_unfolded = [ "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
@@ -1257,7 +1270,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-theme = ExtResource( 31 )
+theme = ExtResource( 32 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -1287,7 +1300,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 0
-theme = ExtResource( 32 )
+theme = ExtResource( 33 )
 min_value = 0.0
 max_value = 100.0
 step = 1.0
@@ -1318,7 +1331,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 30 )
+custom_styles/panel = ExtResource( 31 )
 _sections_unfolded = [ "Grow Direction" ]
 __meta__ = {
 "_edit_lock_": true
@@ -1405,7 +1418,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 33 )
+texture = ExtResource( 34 )
 stretch_mode = 4
 __meta__ = {
 "_edit_lock_": true
@@ -1473,7 +1486,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 35 )
+texture = ExtResource( 36 )
 stretch_mode = 4
 __meta__ = {
 "_edit_lock_": true
@@ -1525,7 +1538,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 30 )
+custom_styles/panel = ExtResource( 31 )
 _sections_unfolded = [ "Grow Direction", "Size Flags", "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
@@ -1600,7 +1613,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 30 )
+custom_styles/panel = ExtResource( 31 )
 _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true

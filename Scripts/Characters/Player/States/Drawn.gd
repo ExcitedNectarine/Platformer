@@ -26,7 +26,7 @@ func update(delta):
 	
 	if Input.is_action_just_pressed("Heavy") and not sprite.frame and host.arrows > 0 and host.has_stamina(COST):
 		var arrow = ARROW_SCENE.instance()
-		arrow.damage = DAMAGE
+		arrow.damage = DAMAGE * host.damage_multiplier
 		arrow.position = left.global_position if host.facing_left else right.global_position
 		arrow.go_left = host.facing_left
 		projectiles.add_child(arrow)

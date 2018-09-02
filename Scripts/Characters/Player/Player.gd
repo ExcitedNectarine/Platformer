@@ -1,6 +1,5 @@
 extends "res://Scripts/Characters/Character.gd"
 
-const MAX_STAMINA = 100
 const STAMINA_REGEN = 50
 const POTION_HEALTH = 50
 const MAX_POTIONS = 10
@@ -15,10 +14,15 @@ const EMPTY_POTION = preload("res://Textures/Player/EmptyPotion.png")
 const FULL_QUIVER = preload("res://Textures/Player/Quiver.png")
 const EMPTY_QUIVER = preload("res://Textures/Player/EmptyQuiver.png")
 
-var stamina = MAX_STAMINA
+var level = 1
+var points = 99999999
+var damage_multiplier = 1.0
+var max_stamina = 100
+
+var stamina = max_stamina
 var potions = STARTING_POTIONS
 var arrows = STARTING_ARROWS
-var points = 0
+
 var hit_enemy = false
 var shrine_position = null
 var spawn_position = null
@@ -51,7 +55,7 @@ Resets the player. Used when at a checkpoint.
 """
 func reset():
 	.alter_health(max_health)
-	alter_stamina(MAX_STAMINA)
+	alter_stamina(max_stamina)
 	
 	potions = STARTING_POTIONS
 	potions_icon.texture = FULL_POTION
@@ -82,7 +86,7 @@ func alter_health(difference, direction):
 
 func alter_stamina(difference):
 	stamina += difference
-	stamina = clamp(stamina, 0, MAX_STAMINA)
+	stamina = clamp(stamina, 0, max_stamina)
 	stamina_bar.value = stamina
 	
 func alter_potions(difference):
@@ -138,7 +142,7 @@ Alters damage done based on what state player is in.
 """
 func _on_body_entered_attack(body):
 	if not hit_enemy and body is ENEMY_SCRIPT:
-		body.alter_health(-current_state.DAMAGE)
+		body.alter_health(-current_state.DAMAGE * damage_multiplier)
 		hit_enemy = true
 	
 func _init():
@@ -161,7 +165,7 @@ func _ready():
 	blood_timer.connect("timeout", self, "_on_blood_timer_timeout")
 	healing_timer.connect("timeout", self, "_on_healing_timer_timeout")
 	
-	stamina_bar.max_value = MAX_STAMINA
+	stamina_bar.max_value = max_stamina
 	stamina_bar.value = stamina
 	potions_left.text = str(potions)
 	arrows_left.text = str(arrows)
