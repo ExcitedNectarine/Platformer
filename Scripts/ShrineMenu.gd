@@ -3,16 +3,16 @@ extends CanvasLayer
 var required_points = 0
 
 onready var player = $"/root/Node/Player"
-onready var level = $Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Level
-onready var current = $Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Current
-onready var required = $Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Required
+onready var level = $Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Level/Level
+onready var current = $Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Current/Current
+onready var required = $Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Required/Required
 
 func set_text():
 	required_points = next_level(player.level)
 	
-	level.text = "Level: " + str(player.level)
-	current.text = "Current: " + str(player.points)
-	required.text = "Required: " + str(required_points)
+	level.text = str(player.level)
+	current.text = str(player.points)
+	required.text = str(required_points)
 	
 func next_level(level):
 	return (500 * level) * 1.5

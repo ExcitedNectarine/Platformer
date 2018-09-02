@@ -15,7 +15,7 @@ const FULL_QUIVER = preload("res://Textures/Player/Quiver.png")
 const EMPTY_QUIVER = preload("res://Textures/Player/EmptyQuiver.png")
 
 var level = 1
-var points = 99999999
+var points = 0
 var damage_multiplier = 1.0
 var max_stamina = 100
 
