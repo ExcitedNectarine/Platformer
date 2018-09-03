@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://Scripts/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Characters/Player/States/Idle.gd" type="Script" id=2]
@@ -617,7 +617,18 @@ use_filter = false
 font_data = ExtResource( 35 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=24]
+[sub_resource type="StyleBoxLine" id=24]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+color = Color( 0, 0, 0, 1 )
+grow = 6.0
+thickness = 3
+vertical = true
+
+[sub_resource type="DynamicFont" id=25]
 
 size = 32
 use_mipmaps = false
@@ -625,7 +636,26 @@ use_filter = false
 font_data = ExtResource( 35 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=25]
+[sub_resource type="StyleBoxLine" id=26]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+color = Color( 0, 0, 0, 1 )
+grow = 1.0
+thickness = 3
+vertical = true
+
+[sub_resource type="DynamicFont" id=27]
+
+size = 32
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 35 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[sub_resource type="DynamicFont" id=28]
 
 size = 32
 use_mipmaps = false
@@ -643,6 +673,8 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Pause", "collision" ]
 
 [node name="States" type="Node" parent="." index="0"]
+
+editor/display_folded = true
 
 [node name="Idle" type="Node" parent="States" index="0"]
 
@@ -1178,7 +1210,6 @@ blend_times = [  ]
 
 [node name="HUD" type="CanvasLayer" parent="." index="9"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -1192,10 +1223,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 36.0
-margin_top = 36.0
-margin_right = 444.0
-margin_bottom = 81.0
+margin_left = 60.0
+margin_top = 60.0
+margin_right = 504.0
+margin_bottom = 111.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -1203,7 +1234,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_styles/panel = ExtResource( 31 )
-_sections_unfolded = [ "custom_styles" ]
+_sections_unfolded = [ "Rect", "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1216,8 +1247,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 3.0
 margin_top = 3.0
-margin_right = 405.0
-margin_bottom = 42.0
+margin_right = 441.0
+margin_bottom = 48.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -1228,6 +1259,7 @@ custom_constants/margin_right = 8
 custom_constants/margin_top = 6
 custom_constants/margin_left = 6
 custom_constants/margin_bottom = 6
+_sections_unfolded = [ "Rect" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1240,8 +1272,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 6.0
 margin_top = 6.0
-margin_right = 394.0
-margin_bottom = 33.0
+margin_right = 430.0
+margin_bottom = 39.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -1261,9 +1293,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 388.0
-margin_bottom = 15.0
-rect_min_size = Vector2( 0, 15 )
+margin_right = 424.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 0, 18 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -1290,10 +1322,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 18.0
-margin_right = 388.0
-margin_bottom = 27.0
-rect_min_size = Vector2( 0, 9 )
+margin_top = 21.0
+margin_right = 424.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 0, 12 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -1321,10 +1353,10 @@ anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 0.0
 anchor_bottom = 1.0
-margin_left = 36.0
-margin_top = -108.0
-margin_right = 162.0
-margin_bottom = -33.0
+margin_left = 60.0
+margin_top = -132.0
+margin_right = 233.0
+margin_bottom = -57.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -1345,7 +1377,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 3.0
 margin_top = 3.0
-margin_right = 157.0
+margin_right = 170.0
 margin_bottom = 72.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1370,7 +1402,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 6.0
 margin_top = 6.0
-margin_right = 148.0
+margin_right = 161.0
 margin_bottom = 63.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1387,6 +1419,7 @@ __meta__ = {
 
 [node name="Potions" type="HBoxContainer" parent="HUD/Items/MarginContainer/HBoxContainer" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1452,14 +1485,36 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Arrows" type="HBoxContainer" parent="HUD/Items/MarginContainer/HBoxContainer" index="1"]
+[node name="VSeparator" type="VSeparator" parent="HUD/Items/MarginContainer/HBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 71.0
-margin_right = 142.0
+margin_right = 75.0
+margin_bottom = 57.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/separator = SubResource( 24 )
+_sections_unfolded = [ "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Arrows" type="HBoxContainer" parent="HUD/Items/MarginContainer/HBoxContainer" index="2"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 84.0
+margin_right = 155.0
 margin_bottom = 57.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1527,10 +1582,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -68.0
-margin_top = -72.0
-margin_right = -37.0
-margin_bottom = -33.0
+margin_left = -116.0
+margin_top = -96.0
+margin_right = -60.0
+margin_bottom = -57.0
 grow_horizontal = 0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1539,7 +1594,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 custom_styles/panel = ExtResource( 31 )
-_sections_unfolded = [ "Grow Direction", "Size Flags", "custom_styles" ]
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags", "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1552,7 +1607,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 3.0
 margin_top = 3.0
-margin_right = 28.0
+margin_right = 53.0
 margin_bottom = 36.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1567,14 +1622,35 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Label" type="Label" parent="HUD/Points/MarginContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Points/MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 6.0
-margin_right = 19.0
+margin_right = 44.0
+margin_bottom = 33.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/separation = 6
+alignment = 0
+_sections_unfolded = [ "custom_constants" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Level" type="Label" parent="HUD/Points/MarginContainer/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 13.0
 margin_bottom = 33.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1582,7 +1658,56 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 24 )
+custom_fonts/font = SubResource( 25 )
+text = "1"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Theme", "custom_fonts" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VSeparator" type="VSeparator" parent="HUD/Points/MarginContainer/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 19.0
+margin_right = 19.0
+margin_bottom = 33.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/separator = SubResource( 26 )
+custom_constants/separation = 0
+_sections_unfolded = [ "custom_constants", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Points" type="Label" parent="HUD/Points/MarginContainer/HBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 25.0
+margin_right = 38.0
+margin_bottom = 33.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 27 )
 text = "0"
 align = 1
 valign = 1
@@ -1602,10 +1727,10 @@ anchor_left = 1.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 0.0
-margin_left = -44.0
-margin_top = 36.0
-margin_right = -32.0
-margin_bottom = 75.0
+margin_left = -80.0
+margin_top = 60.0
+margin_right = -62.0
+margin_bottom = 99.0
 grow_horizontal = 0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1657,7 +1782,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 25 )
+custom_fonts/font = SubResource( 28 )
 align = 1
 valign = 1
 percent_visible = 1.0

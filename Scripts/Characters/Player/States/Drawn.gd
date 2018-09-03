@@ -16,7 +16,7 @@ func enter():
 	sprite.frame = 0 if host.arrows else 1
 	
 func update(delta):
-	if Input.is_action_just_released("Draw"):
+	if not Input.is_action_pressed("Draw"):
 		return "Idle"
 	
 	if Input.is_action_pressed("Left"):
@@ -35,4 +35,3 @@ func update(delta):
 		host.bow_and_arrow_timer.start()
 		host.alter_stamina(-COST)
 		host.alter_arrows(-1)
-		host.play_sound("Woosh")

@@ -10,16 +10,21 @@ func _on_body_entered(body):
 	if body.name != "Player":
 		if body is ENEMY_SCRIPT:
 			body.alter_health(-damage)
+		else:
+			$Audio/Thunk.play()
+			
 		$Sprite.visible = false
 		$Hitbox.disabled = true
-		$Particles2D.emitting = false
+		$Particles/Trail.emitting = false
+		$Particles/Break.emitting = true
 		set_physics_process(false)
 		$DeleteTimer.start()
 
 func _ready():
 	if go_left:
 		$Sprite.flip_h = true
-		$Particles2D.position.x *= -1
+		$Particles/Trail.position.x *= -1
+		$Particles/Break.position.x *= -1
 		
 	connect("body_entered", self, "_on_body_entered")
 	$DeleteTimer.connect("timeout", self, "queue_free")

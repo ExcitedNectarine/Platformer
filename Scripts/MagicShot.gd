@@ -13,9 +13,11 @@ func _on_body_entered(body):
 	$Sprite.visible = false
 	$Hitbox.disabled = true
 	$Light2D.enabled = false
-	$Particles2D.emitting = false
+	$Particles/Trail.emitting = false
+	$Particles/Splash.emitting = true
 	set_physics_process(false)
 	$DeleteTimer.start()
+	$Audio/Singe.play()
 
 func _ready():
 	connect("body_entered", self, "_on_body_entered")

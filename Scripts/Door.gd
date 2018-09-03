@@ -8,6 +8,7 @@ func _on_activation():
 	
 func remove_collision():
 	set_collision_layer_bit(0, false)
+	$NavigationPolygonInstance.enabled = false
 
 func _ready():
 	if activator_path != null:

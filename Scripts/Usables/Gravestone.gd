@@ -6,5 +6,5 @@ func _init():
 	text = "Recover"
 	
 func activate():
+	$"../AnimationPlayer".play("Descent")
 	player.alter_points(points)
-	get_parent().queue_free()

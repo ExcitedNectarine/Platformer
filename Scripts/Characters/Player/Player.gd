@@ -15,7 +15,7 @@ const FULL_QUIVER = preload("res://Textures/Player/Quiver.png")
 const EMPTY_QUIVER = preload("res://Textures/Player/EmptyQuiver.png")
 
 var level = 1
-var points = 0
+var points = 9999999
 var damage_multiplier = 1.0
 var max_stamina = 100
 
@@ -35,7 +35,10 @@ onready var potions_icon = $HUD/Items/MarginContainer/HBoxContainer/Potions/Text
 onready var potions_left = $HUD/Items/MarginContainer/HBoxContainer/Potions/Amount
 onready var arrows_icon = $HUD/Items/MarginContainer/HBoxContainer/Arrows/Texture
 onready var arrows_left = $HUD/Items/MarginContainer/HBoxContainer/Arrows/Amount
-onready var current_points = $HUD/Points/MarginContainer/Label
+onready var current_level = $HUD/Points/MarginContainer/HBoxContainer/Level
+onready var current_points = $HUD/Points/MarginContainer/HBoxContainer/Points
+onready var items_container = $HUD/Items
+onready var points_container = $HUD/Points
 onready var prompt = $HUD/Prompt
 onready var blood = $Particles/Blood
 onready var healing = $Particles/Healing
@@ -72,7 +75,7 @@ If the player is blocking, blocks attack if attack comes from the
 opposite direction of the player.
 """
 func alter_health(difference, direction):
-	if state_name in ["BlockIdle", "BlockRun"] and facing_left != direction:
+	if state_name in ["BlockIdle", "BlockRun", "Thrust"] and facing_left != direction:
 		play_sound("Block")
 		alter_stamina(difference)
 		if not stamina:
@@ -94,6 +97,10 @@ func alter_potions(difference):
 	potions = clamp(potions, 0, MAX_POTIONS)
 	potions_icon.texture = FULL_POTION if potions else EMPTY_POTION
 	potions_left.text = str(potions)
+	
+	# Setting the containers visibility forces it to shrink
+	items_container.visible = false
+	items_container.visible = true
 		
 func alter_arrows(difference):
 	arrows += difference
@@ -101,11 +108,19 @@ func alter_arrows(difference):
 	arrows_icon.texture = FULL_QUIVER if arrows else EMPTY_QUIVER
 	arrows_left.text = str(arrows)
 	
+	# Setting the containers visibility forces it to shrink
+	items_container.visible = false
+	items_container.visible = true
+	
 func alter_points(difference):
 	points += difference
 	if points < 0:
 		points = 0
 	current_points.text = str(points)
+	
+	# Setting the containers visibility forces it to shrink
+	points_container.visible = false
+	points_container.visible = true
 	
 func has_stamina(cost):
 	return stamina >= cost
@@ -141,9 +156,13 @@ func _on_bow_and_arrow_timer_timeout():
 Alters damage done based on what state player is in.
 """
 func _on_body_entered_attack(body):
-	if not hit_enemy and body is ENEMY_SCRIPT:
+	if not body.is_hit and body is ENEMY_SCRIPT:
 		body.alter_health(-current_state.DAMAGE * damage_multiplier)
-		hit_enemy = true
+		body.is_hit = true
+		
+func _on_body_exited_attack(body):
+	if body.is_hit:
+		body.is_hit = false
 	
 func _init():
 	max_health = 100
@@ -157,6 +176,7 @@ func _ready():
 	for side in $Hitboxes.get_children():
 		for hitbox in side.get_children():
 			hitbox.connect("body_entered", self, "_on_body_entered_attack")
+			hitbox.connect("body_exited", self, "_on_body_exited_attack")
 		
 	# Connect other functions
 	connect("death", self, "change_state", ["Dead"])

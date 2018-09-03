@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://TileSets/Castle.tres" type="TileSet" id=1]
-[ext_resource path="res://Scenes/Objects/Usables/Shrine.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Objects/Miscellaneous/Door.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Objects/Miscellaneous/Door.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Objects/Usables/Shrine.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Objects/Usables/Switch.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Objects/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Characters/Enemies/Enemies.gd" type="Script" id=6]
@@ -14,7 +14,7 @@
 [ext_resource path="res://Scenes/Scenes/Menus/RetryMenu.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Scenes/Menus/ShrineMenu.tscn" type="PackedScene" id=13]
 
-[node name="Node" type="Node" index="0"]
+[node name="Node" type="Node"]
 
 [node name="Tilemaps" type="Navigation2D" parent="." index="0"]
 
@@ -47,25 +47,29 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Doors" type="Node2D" parent="Tilemaps" index="1"]
+
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Door" parent="Tilemaps/Doors" index="0" instance=ExtResource( 2 )]
+
+position = Vector2( 1056, 624 )
+activator_path = NodePath("../../../Usables/Switch")
+activator_signal = "activation"
+
 [node name="Usables" type="Node" parent="." index="1"]
 
-editor/display_folded = true
-
-[node name="Shrine" parent="Usables" index="0" instance=ExtResource( 2 )]
+[node name="Shrine" parent="Usables" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 432, 300 )
 
-[node name="Shrine3" parent="Usables" index="1" instance=ExtResource( 2 )]
+[node name="Shrine3" parent="Usables" index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 1200, 636 )
 
-[node name="Door" parent="Usables" index="2" instance=ExtResource( 3 )]
-
-position = Vector2( 1056, 624 )
-activator_path = NodePath("../Switch")
-activator_signal = "activation"
-
-[node name="Switch" parent="Usables" index="3" instance=ExtResource( 4 )]
+[node name="Switch" parent="Usables" index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 816, 624 )
 

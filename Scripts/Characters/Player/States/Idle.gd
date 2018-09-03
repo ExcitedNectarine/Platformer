@@ -17,13 +17,13 @@ func update(delta):
 		return "Jump"
 	elif Input.is_action_pressed("Dash"):
 		return "Dash"
-	elif Input.is_action_just_pressed("Block"):
+	elif Input.is_action_pressed("Block"):
 		return "BlockIdle"
 	elif Input.is_action_pressed("Light"):
 		return "Swing"
 	elif Input.is_action_pressed("Heavy"):
 		return "HeavyThrust"
-	elif Input.is_action_just_pressed("Draw"):
+	elif Input.is_action_pressed("Draw"):
 		return "Drawn"
 	elif Input.is_action_pressed("Drink") and host.potions > 0:
 		return "Drink"

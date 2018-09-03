@@ -3,6 +3,7 @@ extends "res://Scripts/Characters/Character.gd"
 signal activation
 
 var active = false
+var is_hit = false
 var activation_distance = 100
 var path = PoolVector2Array()
 var distance_to_point = Vector2()
