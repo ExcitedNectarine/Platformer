@@ -14,7 +14,7 @@
 [ext_resource path="res://Scenes/Scenes/Menus/RetryMenu.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Scenes/Menus/ShrineMenu.tscn" type="PackedScene" id=13]
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" index="0"]
 
 [node name="Tilemaps" type="Navigation2D" parent="." index="0"]
 
@@ -79,7 +79,6 @@ position = Vector2( 192, 480 )
 
 [node name="Enemies" type="Node" parent="." index="3"]
 
-editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="Zombie" parent="Enemies" index="0" instance=ExtResource( 7 )]
@@ -113,6 +112,14 @@ position = Vector2( 1810, 710 )
 [node name="HammerKnight" parent="Enemies" index="7" instance=ExtResource( 10 )]
 
 position = Vector2( 2890, 1450 )
+
+[node name="Bat2" parent="Enemies" index="8" instance=ExtResource( 8 )]
+
+position = Vector2( 250, 860 )
+
+[node name="Bat3" parent="Enemies" index="9" instance=ExtResource( 8 )]
+
+position = Vector2( 1530, 840 )
 
 [node name="Projectiles" type="Node" parent="." index="4"]
 
