@@ -1,7 +1,7 @@
 extends "Usable.gd"
 
 onready var enemies = $"/root/Node/Enemies"
-onready var menu = $"/root/Node/ShrineMenu"
+onready var menu = $"/root/Node/Menus/Shrine"
 
 func _init():
 	text = "Pray"
@@ -24,6 +24,6 @@ func activate():
 		
 		enemies.respawn()
 		
-		menu.get_node("Control").visible = true
-		menu.get_node("Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelUp").grab_focus()
+		menu.visible = true
+		menu.get_node("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelUp").grab_focus()
 		menu.set_text()

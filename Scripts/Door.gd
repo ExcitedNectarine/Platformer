@@ -5,10 +5,11 @@ export(String) var activator_signal
 
 func _on_activation():
 	$AnimationPlayer.play("Open")
+	$AudioStreamPlayer2D.play()
 	
 func remove_collision():
 	set_collision_layer_bit(0, false)
-	$NavigationPolygonInstance.enabled = false
+	$LightOccluder2D.queue_free()
 
 func _ready():
 	if activator_path != null:

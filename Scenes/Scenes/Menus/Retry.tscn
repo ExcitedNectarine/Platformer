@@ -15,15 +15,7 @@ use_filter = false
 font_data = ExtResource( 2 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="RetryMenu" type="CanvasLayer"]
-
-layer = 2
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
-[node name="Control" type="Control" parent="." index="0"]
+[node name="Retry" type="Control"]
 
 visible = false
 anchor_left = 0.0
@@ -37,11 +29,12 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ColorRect" type="ColorRect" parent="Control" index="0"]
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -58,7 +51,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control" index="1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="1"]
 
 anchor_left = 0.5
 anchor_top = 0.5
@@ -81,7 +74,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Label" type="Label" parent="Control/VBoxContainer" index="0"]
+[node name="Label" type="Label" parent="VBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -107,7 +100,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="Control/VBoxContainer" index="1"]
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -129,7 +122,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PanelContainer" type="PanelContainer" parent="Control/VBoxContainer/CenterContainer" index="0"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/CenterContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -150,7 +143,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer/CenterContainer/PanelContainer" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CenterContainer/PanelContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -175,7 +168,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer/CenterContainer/PanelContainer/MarginContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/CenterContainer/PanelContainer/MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -199,7 +192,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Retry" type="Button" parent="Control/VBoxContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+[node name="Retry" type="Button" parent="VBoxContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -229,7 +222,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Quit" type="Button" parent="Control/VBoxContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+[node name="Quit" type="Button" parent="VBoxContainer/CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0

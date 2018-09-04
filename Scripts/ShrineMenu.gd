@@ -1,13 +1,13 @@
-extends CanvasLayer
+extends Control
 
 const POINT_CONSTANT = 500
 
 var required_points = 0
 
 onready var player = $"/root/Node/Player"
-onready var level = $Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Level/Level
-onready var current = $Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Current/Current
-onready var required = $Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Required/Required
+onready var level = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Level/Level
+onready var current = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Current/Current
+onready var required = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Required/Required
 onready var audio = $AudioStreamPlayer
 
 func set_text():
@@ -18,7 +18,7 @@ func set_text():
 	required.text = str(required_points)
 	
 static func next_level(level):
-	return floor(POINT_CONSTANT * pow(level, 1.5))
+	return stepify(POINT_CONSTANT * pow(level, 1.5), 100)
 	
 func level_up():
 	if player.points >= required_points:

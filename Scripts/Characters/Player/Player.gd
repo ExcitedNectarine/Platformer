@@ -15,7 +15,7 @@ const FULL_QUIVER = preload("res://Textures/Player/Quiver.png")
 const EMPTY_QUIVER = preload("res://Textures/Player/EmptyQuiver.png")
 
 var level = 1
-var points = 9999999
+var points = 0
 var damage_multiplier = 1.0
 var max_stamina = 100
 
@@ -42,8 +42,10 @@ onready var points_container = $HUD/Points
 onready var prompt = $HUD/Prompt
 onready var blood = $Particles/Blood
 onready var healing = $Particles/Healing
+onready var gain_points = $Particles/GainPoints
 onready var blood_timer = $Timers/Blood
 onready var healing_timer = $Timers/Healing
+onready var gain_points_timer = $Timers/GainPoints
 onready var camera = $Camera2D
 
 func show_prompt(text):
@@ -76,8 +78,8 @@ opposite direction of the player.
 """
 func alter_health(difference, direction):
 	if state_name in ["BlockIdle", "BlockRun", "Thrust"] and facing_left != direction:
-		play_sound("Block")
 		alter_stamina(difference)
+		change_state("Blocked")
 		if not stamina:
 			.alter_health(difference / 2)
 	elif state_name != "Dash":
@@ -114,6 +116,10 @@ func alter_arrows(difference):
 	
 func alter_points(difference):
 	points += difference
+	if difference > 0:
+		gain_points.emitting = true
+		gain_points_timer.start()
+		$Audio/GainPoints.play()
 	if points < 0:
 		points = 0
 	current_points.text = str(points)
@@ -136,6 +142,9 @@ func _on_blood_timer_timeout():
 	
 func _on_healing_timer_timeout():
 	healing.emitting = false
+	
+func _on_gain_points_timer_timeout():
+	gain_points.emitting = false
 
 func on_animation_finished(animation_name):
 	if animation_name != "Death":
@@ -156,9 +165,10 @@ func _on_bow_and_arrow_timer_timeout():
 Alters damage done based on what state player is in.
 """
 func _on_body_entered_attack(body):
-	if not body.is_hit and body is ENEMY_SCRIPT:
-		body.alter_health(-current_state.DAMAGE * damage_multiplier)
-		body.is_hit = true
+	if state_name in ["Swing", "Thrust", "HeavyThrust"]:
+		if not body.is_hit and body is ENEMY_SCRIPT:
+			body.alter_health(-current_state.DAMAGE * damage_multiplier)
+			body.is_hit = true
 		
 func _on_body_exited_attack(body):
 	if body.is_hit:
@@ -169,7 +179,7 @@ func _init():
 	sprite = "Idle"
 	health_bar_path = "HUD//Bars/MarginContainer/VBoxContainer/HealthBar"
 	sound_directory = "res://Sounds"
-	add_states = ["Jump", "Dash", "Swing", "Thrust", "HeavyThrust", "Drink"]
+	add_states = ["Jump", "Dash", "Swing", "Thrust", "HeavyThrust", "Drink", "Blocked"]
 
 func _ready():
 	# Connect hitboxes
@@ -184,6 +194,7 @@ func _ready():
 	bow_and_arrow_timer.connect("timeout", self, "_on_bow_and_arrow_timer_timeout")
 	blood_timer.connect("timeout", self, "_on_blood_timer_timeout")
 	healing_timer.connect("timeout", self, "_on_healing_timer_timeout")
+	gain_points_timer.connect("timeout", self, "_on_gain_points_timer_timeout")
 	
 	stamina_bar.max_value = max_stamina
 	stamina_bar.value = stamina

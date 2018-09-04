@@ -1,7 +1,7 @@
 extends Control
 
-onready var retry_menu = $"/root/Node/RetryMenu/Control"
-onready var shrine_menu = $"/root/Node/ShrineMenu/Control"
+onready var retry_menu = $"/root/Node/Menus/Retry"
+onready var shrine_menu = $"/root/Node/Menus/Shrine"
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("Pause") and not retry_menu.visible and not shrine_menu.visible:

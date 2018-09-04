@@ -29,19 +29,21 @@ var current_state = null
 """
 Changes the current state of the character. If "Previous" is
 passed the state will change to the previous state. This only applies
-to states in the 'add_states' array.
+to states in the "add_states" array.
 """
 func change_state(new_state):
+	if current_state != null:
+		current_state.exit()
+	
 	if new_state == "Previous":
 		state_stack.pop_front()
 	elif new_state in add_states:
-		state_stack.push_front(states[new_state])
+		state_stack.push_front(new_state)
 	else:
-		state_stack[0] = states[new_state]
+		state_stack[0] = new_state
 		
-	state_name = new_state
-	
-	current_state = state_stack[0]
+	state_name = state_stack.front()
+	current_state = states[state_name]
 	current_state.enter()
 
 """

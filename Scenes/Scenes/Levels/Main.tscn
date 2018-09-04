@@ -1,20 +1,20 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://TileSets/Castle.tres" type="TileSet" id=1]
-[ext_resource path="res://Scenes/Objects/Miscellaneous/Door.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Objects/Usables/Shrine.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Objects/Usables/Switch.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Objects/Usables/Shrine.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Objects/Usables/Switch.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Objects/Miscellaneous/Door.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Objects/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Characters/Enemies/Enemies.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Objects/Enemies/Zombie.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Objects/Enemies/Bat.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Objects/Enemies/Knight.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Objects/Enemies/HammerKnight.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/Scenes/Menus/PauseMenu.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Scenes/Menus/RetryMenu.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/Scenes/Menus/ShrineMenu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Scenes/Menus/Pause.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Scenes/Menus/Retry.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Scenes/Menus/Shrine.tscn" type="PackedScene" id=13]
 
-[node name="Node" type="Node" index="0"]
+[node name="Node" type="Node"]
 
 [node name="Tilemaps" type="Navigation2D" parent="." index="0"]
 
@@ -47,38 +47,37 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Doors" type="Node2D" parent="Tilemaps" index="1"]
-
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Door" parent="Tilemaps/Doors" index="0" instance=ExtResource( 2 )]
-
-position = Vector2( 1056, 624 )
-activator_path = NodePath("../../../Usables/Switch")
-activator_signal = "activation"
-
 [node name="Usables" type="Node" parent="." index="1"]
 
-[node name="Shrine" parent="Usables" index="0" instance=ExtResource( 3 )]
+editor/display_folded = true
+
+[node name="Shrine" parent="Usables" index="0" instance=ExtResource( 2 )]
 
 position = Vector2( 432, 300 )
 
-[node name="Shrine3" parent="Usables" index="1" instance=ExtResource( 3 )]
+[node name="Shrine3" parent="Usables" index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 1200, 636 )
 
-[node name="Switch" parent="Usables" index="2" instance=ExtResource( 4 )]
+[node name="Switch" parent="Usables" index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 816, 624 )
 
-[node name="Player" parent="." index="2" instance=ExtResource( 5 )]
+[node name="Doors" type="Node" parent="." index="2"]
+
+[node name="Door" parent="Doors" index="0" instance=ExtResource( 4 )]
+
+position = Vector2( 1008, 576 )
+activator_path = NodePath("../../Usables/Switch")
+activator_signal = "activation"
+
+[node name="Player" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 192, 480 )
 
-[node name="Enemies" type="Node" parent="." index="3"]
+[node name="Enemies" type="Node" parent="." index="4"]
 
+editor/display_folded = true
 script = ExtResource( 6 )
 
 [node name="Zombie" parent="Enemies" index="0" instance=ExtResource( 7 )]
@@ -121,19 +120,28 @@ position = Vector2( 250, 860 )
 
 position = Vector2( 1530, 840 )
 
-[node name="Projectiles" type="Node" parent="." index="4"]
+[node name="Projectiles" type="Node" parent="." index="5"]
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." index="5"]
+[node name="CanvasModulate" type="CanvasModulate" parent="." index="6"]
 
 color = Color( 0.392157, 0.392157, 0.392157, 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="PauseMenu" parent="." index="6" instance=ExtResource( 11 )]
+[node name="Menus" type="CanvasLayer" parent="." index="7"]
 
-[node name="RetryMenu" parent="." index="7" instance=ExtResource( 12 )]
+editor/display_folded = true
+layer = 2
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="ShrineMenu" parent="." index="8" instance=ExtResource( 13 )]
+[node name="Pause" parent="Menus" index="0" instance=ExtResource( 11 )]
+
+[node name="Retry" parent="Menus" index="1" instance=ExtResource( 12 )]
+
+[node name="Shrine" parent="Menus" index="2" instance=ExtResource( 13 )]
 
 

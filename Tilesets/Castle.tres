@@ -526,4 +526,13 @@ points = PoolVector2Array( 24, -24, 24, 24, -24, 24, -24, -24 )
 "shape": SubResource( 20 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 24, 24 )
 } ]
+26/name = "BackWallNoNav"
+26/texture = ExtResource( 1 )
+26/tex_offset = Vector2( 0, 0 )
+26/modulate = Color( 1, 1, 1, 1 )
+26/region = Rect2( 0, 0, 48, 48 )
+26/is_autotile = false
+26/occluder_offset = Vector2( 24, 24 )
+26/navigation_offset = Vector2( 24, 24 )
+26/shapes = [  ]
 

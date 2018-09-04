@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/Buttons/Play.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Buttons/Exit.gd" type="Script" id=4]
 
-[node name="CenterContainer" type="CenterContainer"]
+[node name="Main" type="CenterContainer"]
 
 anchor_left = 0.0
 anchor_top = 0.0

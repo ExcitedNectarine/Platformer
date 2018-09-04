@@ -11,3 +11,11 @@ func enter():
 		host.velocity.x = 0
 	else:
 		host.change_state("Previous")
+		
+func exit():
+	host.animations.stop()
+	for side in $"../../Hitboxes".get_children():
+		for hitbox in side.get_children():
+			var shape = hitbox.get_node("CollisionShape2D")
+			if not shape.disabled:
+				shape.disabled = true
