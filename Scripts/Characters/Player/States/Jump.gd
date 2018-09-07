@@ -12,6 +12,9 @@ func enter():
 		host.alter_stamina(-COST)
 	else:
 		host.change_state("Previous")
+		
+func reenter():
+	host.change_sprite("Jump")
 	
 func update(delta):
 	if Input.is_action_pressed("Left"):
@@ -25,6 +28,9 @@ func update(delta):
 		host.flip_sprites(true)
 	elif host.velocity.x > 0:
 		host.flip_sprites(false)
+		
+	if Input.is_action_pressed("Dash"):
+		return "Dash"
 		
 	if host.is_on_floor():
 		host.play_footstep()

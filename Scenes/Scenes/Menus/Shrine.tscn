@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/ShrineMenu.gd" type="Script" id=1]
 [ext_resource path="res://Sounds/LevelUp.wav" type="AudioStream" id=2]
@@ -7,6 +7,14 @@
 [ext_resource path="res://Themes/Button.tres" type="Theme" id=5]
 [ext_resource path="res://Scripts/Buttons/LevelUp.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Buttons/Leave.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFont" id=7]
+
+size = 22
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -53,7 +61,7 @@ use_filter = false
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Shrine" type="Control" index="0"]
+[node name="Shrine" type="Control"]
 
 visible = false
 anchor_left = 0.0
@@ -100,6 +108,7 @@ __meta__ = {
 
 [node name="CenterContainer" type="CenterContainer" parent="." index="2"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -146,7 +155,7 @@ anchor_bottom = 0.0
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 215.0
-margin_bottom = 186.0
+margin_bottom = 349.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -171,7 +180,7 @@ anchor_bottom = 0.0
 margin_left = 6.0
 margin_top = 6.0
 margin_right = 206.0
-margin_bottom = 177.0
+margin_bottom = 340.0
 rect_min_size = Vector2( 200, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -186,14 +195,327 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Stats" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
+[node name="LevelInfo" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="0"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 200.0
-margin_bottom = 99.0
+margin_bottom = 128.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/panel = ExtResource( 3 )
+_sections_unfolded = [ "Theme", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 197.0
+margin_bottom = 125.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/margin_right = 6
+custom_constants/margin_top = 6
+custom_constants/margin_left = 6
+custom_constants/margin_bottom = 6
+_sections_unfolded = [ "custom_constants" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer" index="0"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 188.0
+margin_bottom = 116.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/separation = 6
+alignment = 0
+_sections_unfolded = [ "Rect", "custom_constants" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 182.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 7 )
+text = "Level Info"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Level" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 29.0
+margin_right = 182.0
+margin_bottom = 52.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/panel = SubResource( 1 )
+_sections_unfolded = [ "Rect", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer/Level" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 182.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "Level"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Level" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer/Level" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 182.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 2
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Current" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 58.0
+margin_right = 182.0
+margin_bottom = 81.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/panel = SubResource( 3 )
+_sections_unfolded = [ "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer/Current" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 182.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+text = "Current"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Current" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer/Current" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 182.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+text = "0"
+align = 2
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Required" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 87.0
+margin_right = 182.0
+margin_bottom = 110.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/panel = SubResource( 5 )
+_sections_unfolded = [ "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer/Required" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 182.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 6 )
+text = "Required"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Required" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer/Required" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 182.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 6 )
+text = "0"
+align = 2
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Stats" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 134.0
+margin_right = 200.0
+margin_bottom = 262.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -215,7 +537,7 @@ anchor_bottom = 0.0
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 197.0
-margin_bottom = 96.0
+margin_bottom = 125.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -240,7 +562,7 @@ anchor_bottom = 0.0
 margin_left = 6.0
 margin_top = 6.0
 margin_right = 188.0
-margin_bottom = 87.0
+margin_bottom = 116.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -254,28 +576,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Level" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer" index="0"]
-
-editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 182.0
-margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_styles/panel = SubResource( 1 )
-_sections_unfolded = [ "Rect", "custom_styles" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Level" index="0"]
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -289,8 +590,9 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
-text = "Level:"
+custom_fonts/font = SubResource( 7 )
+text = "Stats"
+align = 1
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -300,35 +602,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Level" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Level" index="1"]
+[node name="Health" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer" index="1"]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 182.0
-margin_bottom = 23.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
-text = "0"
-align = 2
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Current" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer" index="1"]
-
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -342,13 +617,13 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = SubResource( 3 )
-_sections_unfolded = [ "custom_styles" ]
+custom_styles/panel = SubResource( 1 )
+_sections_unfolded = [ "Rect", "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Current" index="0"]
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Health" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -362,8 +637,8 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 4 )
-text = "Current:"
+custom_fonts/font = SubResource( 2 )
+text = "Health"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -373,7 +648,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Current" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Current" index="1"]
+[node name="Health" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Health" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -387,7 +662,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 text = "0"
 align = 2
 valign = 1
@@ -399,9 +674,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Required" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer" index="2"]
+[node name="Stamina" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer" index="2"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -415,13 +689,85 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+custom_styles/panel = SubResource( 3 )
+_sections_unfolded = [ "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Stamina" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 182.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+text = "Stamina"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Stamina" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Stamina" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 182.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 4 )
+text = "0"
+align = 2
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_fonts" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Damage" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 87.0
+margin_right = 182.0
+margin_bottom = 110.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 custom_styles/panel = SubResource( 5 )
 _sections_unfolded = [ "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Required" index="0"]
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Damage" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -436,7 +782,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
 custom_fonts/font = SubResource( 6 )
-text = "Required:"
+text = "Damage"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -446,7 +792,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Required" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Required" index="1"]
+[node name="Damage" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Damage" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -472,15 +818,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="LevelUp" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="1"]
+[node name="LevelUp" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 105.0
+margin_top = 268.0
 margin_right = 200.0
-margin_bottom = 135.0
+margin_bottom = 298.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -503,15 +849,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Leave" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="2"]
+[node name="Leave" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 141.0
+margin_top = 304.0
 margin_right = 200.0
-margin_bottom = 171.0
+margin_bottom = 334.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false

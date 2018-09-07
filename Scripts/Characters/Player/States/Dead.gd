@@ -15,7 +15,7 @@ func enter():
 	gravestone.position = host.position
 	
 	for usable in usables.get_children():
-		if usable.filename == "res://Scenes/Objects/Usables/Gravestone.tscn":
+		if usable.filename == gravestone.filename:
 			usable.queue_free()
 	
 	usables.add_child(gravestone)

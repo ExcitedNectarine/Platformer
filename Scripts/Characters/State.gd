@@ -5,6 +5,9 @@ var host = null
 func enter():
 	pass
 	
+func reenter():
+	enter()
+	
 func exit():
 	pass
 	

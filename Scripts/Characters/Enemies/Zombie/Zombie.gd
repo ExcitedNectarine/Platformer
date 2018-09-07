@@ -14,16 +14,11 @@ func _on_animation_finished(animation_name):
 		else:
 			change_state("Idle")
 		_physics_process(0)
-
-func _on_activation():
-	._on_activation()
-	change_state("Run")
 	
 func _on_player_death():
 	if state_name != "Dead":
 		change_state("Idle")
 		health_bar.visible = false
-		path_timer.stop()
 	
 		for hitbox in $Hitboxes.get_children():
 			hitbox.get_node("CollisionShape2D").disabled = true
@@ -45,7 +40,6 @@ func on_attack_finished():
 
 func _init():
 	max_health = 75
-	health_bar_path = "HealthBar"
 	sprite = "Idle"
 	activation_distance = 300
 	sound_directory = "res://Sounds"
@@ -54,6 +48,8 @@ func _init():
 
 func _ready():
 	connect("death", self, "_on_death")
+	connect("activated", self, "change_state", ["Run"])
+	connect("deactivated", self, "change_state", ["Idle"])
 	player.connect("death", self, "_on_player_death")
 	animations.connect("animation_finished", self, "_on_animation_finished")
 	

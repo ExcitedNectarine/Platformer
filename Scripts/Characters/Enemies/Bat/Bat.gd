@@ -9,17 +9,12 @@ var move_away = false
 onready var animations = $AnimationPlayer
 onready var hitbox = $Hitbox
 onready var move_away_timer = $Timers/MoveAway
-
-func _on_activation():
-	._on_activation()
-	change_state("Fly")
 	
 func _on_player_death():
 	if state_name == "Fly" and active:
 		change_state("Idle")
 		health_bar.visible = false
 		velocity = Vector2()
-		path_timer.stop()
 	
 func _on_body_entered(body):
 	if not move_away and body.name == "Player":
@@ -33,7 +28,6 @@ func _on_move_away_timer_timeout():
 
 func _init():
 	max_health = 30
-	health_bar_path = "HealthBar"
 	sound_directory = "res://Sounds"
 	sprite = "Fly"
 	activation_distance = 400
@@ -43,6 +37,8 @@ func _ready():
 	change_state("Idle")
 
 	connect("death", self, "change_state", ["Fall"])
+	connect("activated", self, "change_state", ["Fly"])
+	connect("deactivated", self, "change_state", ["Idle"])
 	player.connect("death", self, "_on_player_death")
 	hitbox.connect("body_entered", self, "_on_body_entered")
 	move_away_timer.connect("timeout", self, "_on_move_away_timer_timeout")

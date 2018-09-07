@@ -30,6 +30,7 @@ func enter():
 		dash_particles.emitting = true
 		host.animations.stop()
 		host.velocity.x = -SPEED if host.facing_left else SPEED
+		host.velocity.y = 0
 		can_dash = false
 		dash_timer.start()
 		host.alter_stamina(-COST)

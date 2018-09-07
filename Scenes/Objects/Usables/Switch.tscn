@@ -1,10 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Usables/Switch.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Miscellaneous/Switch.png" type="Texture" id=2]
 [ext_resource path="res://Sounds/Switch.wav" type="AudioStream" id=3]
 
-[sub_resource type="AudioStreamRandomPitch" id=1]
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 27, 18 )
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
 
 audio_stream = ExtResource( 3 )
 random_pitch = 1.1
@@ -32,17 +37,16 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-build_mode = 0
-polygon = PoolVector2Array( -27, -18, 27, -18, 27, 18, -27, 18 )
+shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="2"]
 
-stream = SubResource( 1 )
+stream = SubResource( 2 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false

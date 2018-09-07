@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://Scripts/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Characters/Player/States/Idle.gd" type="Script" id=2]
@@ -33,12 +33,14 @@
 [ext_resource path="res://Sounds/Hit.wav" type="AudioStream" id=31]
 [ext_resource path="res://Sounds/GainPoints.wav" type="AudioStream" id=32]
 [ext_resource path="res://Themes/BloodParticles.tres" type="Material" id=33]
-[ext_resource path="res://Themes/Panel.tres" type="StyleBox" id=34]
-[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=35]
-[ext_resource path="res://Themes/StaminaBar.tres" type="Theme" id=36]
-[ext_resource path="res://Textures/Player/Potion.png" type="Texture" id=37]
-[ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=38]
-[ext_resource path="res://Textures/Player/Quiver.png" type="Texture" id=39]
+[ext_resource path="res://Textures/Miscellaneous/GreenSpark.png" type="Texture" id=34]
+[ext_resource path="res://Themes/Panel.tres" type="StyleBox" id=35]
+[ext_resource path="res://Themes/HealthBar.tres" type="Theme" id=36]
+[ext_resource path="res://Themes/StaminaBar.tres" type="Theme" id=37]
+[ext_resource path="res://Textures/Player/Potion.png" type="Texture" id=38]
+[ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=39]
+[ext_resource path="res://Textures/Player/Quiver.png" type="Texture" id=40]
+[ext_resource path="res://Themes/EnemyHealthBarMaterial.tres" type="Material" id=41]
 
 [sub_resource type="AudioStreamRandomPitch" id=1]
 
@@ -49,33 +51,33 @@ random_pitch = 1.1
 audio_stream = ExtResource( 31 )
 random_pitch = 1.1
 
-[sub_resource type="AudioStreamRandomPitch" id=32]
+[sub_resource type="AudioStreamRandomPitch" id=3]
 
 audio_stream = ExtResource( 32 )
 random_pitch = 1.1
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 27, 39 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 39, 12 )
 
-[sub_resource type="Gradient" id=5]
+[sub_resource type="Gradient" id=6]
 
 offsets = PoolRealArray( 0, 1 )
 colors = PoolColorArray( 1, 1, 0, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=6]
+[sub_resource type="GradientTexture" id=7]
 
 flags = 4
-gradient = SubResource( 5 )
+gradient = SubResource( 6 )
 width = 2048
 
-[sub_resource type="ParticlesMaterial" id=7]
+[sub_resource type="ParticlesMaterial" id=8]
 
 render_priority = 0
 trail_divisor = 1
@@ -105,7 +107,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 3.0
 scale_random = 0.0
-color_ramp = SubResource( 6 )
+color_ramp = SubResource( 7 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -115,18 +117,18 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Flags", "Gravity", "Initial Velocity", "Scale", "Spread" ]
 
-[sub_resource type="Gradient" id=8]
+[sub_resource type="Gradient" id=9]
 
 offsets = PoolRealArray( 0, 0.00591716, 1 )
 colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 0.392157, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=9]
+[sub_resource type="GradientTexture" id=10]
 
 flags = 4
-gradient = SubResource( 8 )
+gradient = SubResource( 9 )
 width = 2048
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticlesMaterial" id=11]
 
 render_priority = 0
 trail_divisor = 1
@@ -155,7 +157,7 @@ angle = 0.0
 angle_random = 0.0
 scale = 1.0
 scale_random = 0.0
-color_ramp = SubResource( 9 )
+color_ramp = SubResource( 10 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -165,18 +167,18 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Animation", "Color", "Flags", "Hue Variation", "Scale", "Spread", "Trail" ]
 
-[sub_resource type="Gradient" id=29]
+[sub_resource type="Gradient" id=12]
 
 offsets = PoolRealArray( 0, 1 )
-colors = PoolColorArray( 1, 0, 1, 1, 1, 0, 1, 0 )
+colors = PoolColorArray( 0, 1, 0, 1, 0, 1, 0, 0 )
 
-[sub_resource type="GradientTexture" id=30]
+[sub_resource type="GradientTexture" id=13]
 
 flags = 4
-gradient = SubResource( 29 )
+gradient = SubResource( 12 )
 width = 2048
 
-[sub_resource type="ParticlesMaterial" id=31]
+[sub_resource type="ParticlesMaterial" id=14]
 
 render_priority = 0
 trail_divisor = 1
@@ -204,9 +206,9 @@ damping = 0.0
 damping_random = 0.0
 angle = 0.0
 angle_random = 0.0
-scale = 6.0
+scale = 1.0
 scale_random = 0.0
-color_ramp = SubResource( 30 )
+color_ramp = SubResource( 13 )
 hue_variation = 0.0
 hue_variation_random = 0.0
 anim_speed = 0.0
@@ -216,7 +218,13 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Color", "Emission Shape", "Gravity", "Initial Velocity", "Radial Accel", "Scale", "Spread" ]
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="CapsuleShape2D" id=15]
+
+custom_solver_bias = 0.0
+radius = 21.0
+height = 48.0
+
+[sub_resource type="Animation" id=16]
 
 length = 0.8
 loop = true
@@ -234,7 +242,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=17]
 
 length = 1.2
 loop = true
@@ -269,7 +277,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=18]
 
 length = 0.6
 loop = false
@@ -287,7 +295,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2 ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=19]
 
 length = 1.2
 loop = false
@@ -333,7 +341,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=20]
 
 length = 0.8
 loop = true
@@ -351,7 +359,7 @@ tracks/0/keys = {
 "values": [ 0, 1 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=21]
 
 length = 1.2
 loop = false
@@ -387,18 +395,15 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.6, 1.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Thrust" ],
 "method": "play_sound"
-}, {
-"args": [  ],
-"method": "on_attack_finished"
 } ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=22]
 
 length = 0.4
 loop = false
@@ -434,18 +439,15 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Swing" ],
 "method": "play_sound"
-}, {
-"args": [  ],
-"method": "on_attack_finished"
 } ]
 }
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=23]
 
 length = 0.4
 loop = false
@@ -481,18 +483,15 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Thrust" ],
 "method": "play_sound"
-}, {
-"args": [  ],
-"method": "on_attack_finished"
 } ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=24]
 
 length = 1.2
 loop = false
@@ -528,18 +527,15 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.6, 1.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Thrust" ],
 "method": "play_sound"
-}, {
-"args": [  ],
-"method": "on_attack_finished"
 } ]
 }
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=25]
 
 length = 0.4
 loop = false
@@ -575,18 +571,15 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Swing" ],
 "method": "play_sound"
-}, {
-"args": [  ],
-"method": "on_attack_finished"
 } ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=26]
 
 length = 0.4
 loop = false
@@ -622,18 +615,15 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Thrust" ],
 "method": "play_sound"
-}, {
-"args": [  ],
-"method": "on_attack_finished"
 } ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=27]
 
 length = 0.8
 loop = true
@@ -668,15 +658,15 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="DynamicFont" id=23]
+[sub_resource type="DynamicFont" id=28]
 
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 38 )
+font_data = ExtResource( 39 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="StyleBoxLine" id=24]
+[sub_resource type="StyleBoxLine" id=29]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -687,15 +677,15 @@ grow = 6.0
 thickness = 3
 vertical = true
 
-[sub_resource type="DynamicFont" id=25]
+[sub_resource type="DynamicFont" id=30]
 
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 38 )
+font_data = ExtResource( 39 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="StyleBoxLine" id=26]
+[sub_resource type="StyleBoxLine" id=31]
 
 content_margin_left = -1.0
 content_margin_right = -1.0
@@ -706,23 +696,31 @@ grow = 1.0
 thickness = 3
 vertical = true
 
-[sub_resource type="DynamicFont" id=27]
+[sub_resource type="DynamicFont" id=32]
 
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 38 )
+font_data = ExtResource( 39 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[sub_resource type="DynamicFont" id=28]
+[sub_resource type="DynamicFont" id=33]
 
 size = 32
 use_mipmaps = false
 use_filter = false
-font_data = ExtResource( 38 )
+font_data = ExtResource( 39 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Player" type="KinematicBody2D" index="0"]
+[sub_resource type="DynamicFont" id=34]
+
+size = 32
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 39 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Player" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 2
@@ -955,6 +953,7 @@ __meta__ = {
 
 [node name="Audio" type="Node2D" parent="." index="2"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -989,7 +988,7 @@ __meta__ = {
 
 [node name="GainPoints" type="AudioStreamPlayer2D" parent="Audio" index="2"]
 
-stream = SubResource( 32 )
+stream = SubResource( 3 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -1001,16 +1000,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3"]
-
-build_mode = 0
-polygon = PoolVector2Array( -21, -45, 21, -45, 21, 45, -21, 45 )
-_sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Hitboxes" type="Node2D" parent="." index="4"]
+[node name="Hitboxes" type="Node2D" parent="." index="3"]
 
 editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
@@ -1044,7 +1034,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Right/Swing" index="0"]
 
 position = Vector2( 48, 6 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 disabled = true
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
@@ -1071,7 +1061,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Right/Thrust" index="0"]
 
 position = Vector2( 60, -3 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 disabled = true
 __meta__ = {
 "_edit_lock_": true
@@ -1102,7 +1092,7 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Left/Swing" index="0"]
 
 position = Vector2( -48, 6 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 disabled = true
 __meta__ = {
 "_edit_lock_": true
@@ -1128,13 +1118,13 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Left/Thrust" index="0"]
 
 position = Vector2( -60, -3 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 disabled = true
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="ArrowSpawn" type="Node2D" parent="." index="5"]
+[node name="ArrowSpawn" type="Node2D" parent="." index="4"]
 
 editor/display_folded = true
 __meta__ = {
@@ -1157,9 +1147,8 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Particles" type="Node2D" parent="." index="6"]
+[node name="Particles" type="Node2D" parent="." index="5"]
 
-editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1206,7 +1195,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 7 )
+process_material = SubResource( 8 )
 texture = null
 normal_map = null
 h_frames = 1
@@ -1231,7 +1220,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = false
 draw_order = 0
-process_material = SubResource( 10 )
+process_material = SubResource( 11 )
 texture = ExtResource( 20 )
 normal_map = null
 h_frames = 1
@@ -1256,12 +1245,19 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 31 )
-texture = null
+process_material = SubResource( 14 )
+texture = ExtResource( 34 )
 normal_map = null
 h_frames = 1
 v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Time" ]
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
+
+shape = SubResource( 15 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1272,11 +1268,11 @@ anchor_mode = 1
 rotating = false
 current = true
 zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
+limit_left = -10000
+limit_top = -10000
+limit_right = 10000
+limit_bottom = 10000
+limit_smoothed = true
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 smoothing_enabled = false
@@ -1290,7 +1286,7 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Limit", "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1302,53 +1298,92 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/BlockIdle = SubResource( 11 )
-anims/BlockRun = SubResource( 12 )
-anims/Death = SubResource( 13 )
-anims/Drink = SubResource( 14 )
-anims/Idle = SubResource( 15 )
-"anims/Left Heavy Thrust" = SubResource( 16 )
-"anims/Left Swing" = SubResource( 17 )
-"anims/Left Thrust" = SubResource( 18 )
-"anims/Right Heavy Thrust" = SubResource( 19 )
-"anims/Right Swing" = SubResource( 20 )
-"anims/Right Thrust" = SubResource( 21 )
-anims/Run = SubResource( 22 )
+anims/BlockIdle = SubResource( 16 )
+anims/BlockRun = SubResource( 17 )
+anims/Death = SubResource( 18 )
+anims/Drink = SubResource( 19 )
+anims/Idle = SubResource( 20 )
+"anims/Left Heavy Thrust" = SubResource( 21 )
+"anims/Left Swing" = SubResource( 22 )
+"anims/Left Thrust" = SubResource( 23 )
+"anims/Right Heavy Thrust" = SubResource( 24 )
+"anims/Right Swing" = SubResource( 25 )
+"anims/Right Thrust" = SubResource( 26 )
+anims/Run = SubResource( 27 )
 blend_times = [  ]
 
 [node name="HUD" type="CanvasLayer" parent="." index="9"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="Bars" type="PanelContainer" parent="HUD" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 60.0
-margin_top = 60.0
-margin_right = 504.0
-margin_bottom = 111.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/panel = ExtResource( 34 )
-_sections_unfolded = [ "Rect", "custom_styles" ]
+custom_constants/margin_right = 36
+custom_constants/margin_top = 36
+custom_constants/margin_left = 36
+custom_constants/margin_bottom = 36
+_sections_unfolded = [ "custom_constants" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/Bars" index="0"]
+[node name="Container" type="Container" parent="HUD/MarginContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 36.0
+margin_top = 36.0
+margin_right = 1244.0
+margin_bottom = 684.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Bars" type="PanelContainer" parent="HUD/MarginContainer/Container" index="0"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 500.0
+margin_bottom = 51.0
+rect_min_size = Vector2( 500, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = ExtResource( 35 )
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags", "Visibility", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/Container/Bars" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1356,7 +1391,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 3.0
 margin_top = 3.0
-margin_right = 441.0
+margin_right = 497.0
 margin_bottom = 48.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1373,7 +1408,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Bars/MarginContainer" index="0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/Container/Bars/MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1381,7 +1416,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 6.0
 margin_top = 6.0
-margin_right = 430.0
+margin_right = 486.0
 margin_bottom = 39.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -1396,45 +1431,15 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="HealthBar" type="ProgressBar" parent="HUD/Bars/MarginContainer/VBoxContainer" index="0"]
+[node name="HealthBar" type="ProgressBar" parent="HUD/MarginContainer/Container/Bars/MarginContainer/VBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 424.0
+margin_right = 480.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 0, 18 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 0
-theme = ExtResource( 35 )
-min_value = 0.0
-max_value = 100.0
-step = 1.0
-page = 0.0
-value = 0.0
-exp_edit = false
-rounded = false
-percent_visible = false
-_sections_unfolded = [ "Anchor", "Percent", "Rect", "Theme" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="StaminaBar" type="ProgressBar" parent="HUD/Bars/MarginContainer/VBoxContainer" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 21.0
-margin_right = 424.0
-margin_bottom = 33.0
-rect_min_size = Vector2( 0, 12 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -1450,35 +1455,63 @@ value = 0.0
 exp_edit = false
 rounded = false
 percent_visible = false
+_sections_unfolded = [ "Anchor", "Percent", "Rect", "Theme" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StaminaBar" type="ProgressBar" parent="HUD/MarginContainer/Container/Bars/MarginContainer/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 21.0
+margin_right = 480.0
+margin_bottom = 33.0
+rect_min_size = Vector2( 0, 12 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+theme = ExtResource( 37 )
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = false
 _sections_unfolded = [ "Percent", "Rect", "Theme" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Items" type="PanelContainer" parent="HUD" index="1"]
+[node name="Items" type="PanelContainer" parent="HUD/MarginContainer/Container" index="1"]
 
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 0.0
 anchor_bottom = 1.0
-margin_left = 60.0
-margin_top = -132.0
-margin_right = 233.0
-margin_bottom = -57.0
+margin_top = -75.0
+margin_right = 173.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_styles/panel = ExtResource( 34 )
-_sections_unfolded = [ "Grow Direction" ]
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = ExtResource( 35 )
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Size Flags" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/Items" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/Container/Items" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1503,7 +1536,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Items/MarginContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/Container/Items/MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1526,7 +1559,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Potions" type="HBoxContainer" parent="HUD/Items/MarginContainer/HBoxContainer" index="0"]
+[node name="Potions" type="HBoxContainer" parent="HUD/MarginContainer/Container/Items/MarginContainer/HBoxContainer" index="0"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -1546,7 +1579,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Texture" type="TextureRect" parent="HUD/Items/MarginContainer/HBoxContainer/Potions" index="0"]
+[node name="Texture" type="TextureRect" parent="HUD/MarginContainer/Container/Items/MarginContainer/HBoxContainer/Potions" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1560,13 +1593,13 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 37 )
+texture = ExtResource( 38 )
 stretch_mode = 4
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Amount" type="Label" parent="HUD/Items/MarginContainer/HBoxContainer/Potions" index="1"]
+[node name="Amount" type="Label" parent="HUD/MarginContainer/Container/Items/MarginContainer/HBoxContainer/Potions" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1582,7 +1615,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 23 )
+custom_fonts/font = SubResource( 28 )
 text = "0"
 align = 1
 valign = 1
@@ -1594,7 +1627,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="VSeparator" type="VSeparator" parent="HUD/Items/MarginContainer/HBoxContainer" index="1"]
+[node name="VSeparator" type="VSeparator" parent="HUD/MarginContainer/Container/Items/MarginContainer/HBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1609,13 +1642,13 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/separator = SubResource( 24 )
+custom_styles/separator = SubResource( 29 )
 _sections_unfolded = [ "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Arrows" type="HBoxContainer" parent="HUD/Items/MarginContainer/HBoxContainer" index="2"]
+[node name="Arrows" type="HBoxContainer" parent="HUD/MarginContainer/Container/Items/MarginContainer/HBoxContainer" index="2"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -1636,7 +1669,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Texture" type="TextureRect" parent="HUD/Items/MarginContainer/HBoxContainer/Arrows" index="0"]
+[node name="Texture" type="TextureRect" parent="HUD/MarginContainer/Container/Items/MarginContainer/HBoxContainer/Arrows" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1650,13 +1683,13 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-texture = ExtResource( 39 )
+texture = ExtResource( 40 )
 stretch_mode = 4
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Amount" type="Label" parent="HUD/Items/MarginContainer/HBoxContainer/Arrows" index="1"]
+[node name="Amount" type="Label" parent="HUD/MarginContainer/Container/Items/MarginContainer/HBoxContainer/Arrows" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1672,7 +1705,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 23 )
+custom_fonts/font = SubResource( 28 )
 text = "0"
 align = 1
 valign = 1
@@ -1684,31 +1717,29 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Points" type="PanelContainer" parent="HUD" index="2"]
+[node name="Points" type="PanelContainer" parent="HUD/MarginContainer/Container" index="2"]
 
 editor/display_folded = true
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -116.0
-margin_top = -96.0
-margin_right = -60.0
-margin_bottom = -57.0
+margin_left = -56.0
+margin_top = -39.0
 grow_horizontal = 0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_styles/panel = ExtResource( 34 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = ExtResource( 35 )
 _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Rect", "Size Flags", "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/Points" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/Container/Points" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1731,7 +1762,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Points/MarginContainer" index="0"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/Container/Points/MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1753,7 +1784,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Level" type="Label" parent="HUD/Points/MarginContainer/HBoxContainer" index="0"]
+[node name="Level" type="Label" parent="HUD/MarginContainer/Container/Points/MarginContainer/HBoxContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1767,7 +1798,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 25 )
+custom_fonts/font = SubResource( 30 )
 text = "1"
 align = 1
 valign = 1
@@ -1779,7 +1810,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="VSeparator" type="VSeparator" parent="HUD/Points/MarginContainer/HBoxContainer" index="1"]
+[node name="VSeparator" type="VSeparator" parent="HUD/MarginContainer/Container/Points/MarginContainer/HBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1794,14 +1825,14 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-custom_styles/separator = SubResource( 26 )
+custom_styles/separator = SubResource( 31 )
 custom_constants/separation = 0
 _sections_unfolded = [ "custom_constants", "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Points" type="Label" parent="HUD/Points/MarginContainer/HBoxContainer" index="2"]
+[node name="Points" type="Label" parent="HUD/MarginContainer/Container/Points/MarginContainer/HBoxContainer" index="2"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1816,7 +1847,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 27 )
+custom_fonts/font = SubResource( 32 )
 text = "0"
 align = 1
 valign = 1
@@ -1828,7 +1859,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Prompt" type="PanelContainer" parent="HUD" index="3"]
+[node name="Prompt" type="PanelContainer" parent="HUD/MarginContainer/Container" index="3"]
 
 editor/display_folded = true
 visible = false
@@ -1836,24 +1867,22 @@ anchor_left = 1.0
 anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 0.0
-margin_left = -80.0
-margin_top = 60.0
-margin_right = -62.0
-margin_bottom = 99.0
+margin_left = -18.0
+margin_bottom = 39.0
 grow_horizontal = 0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-custom_styles/panel = ExtResource( 34 )
-_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "custom_styles" ]
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = ExtResource( 35 )
+_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Mouse", "Rect", "Size Flags", "Theme", "custom_styles" ]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/Prompt" index="0"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/Container/Prompt" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1876,7 +1905,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Label" type="Label" parent="HUD/Prompt/MarginContainer" index="0"]
+[node name="Label" type="Label" parent="HUD/MarginContainer/Container/Prompt/MarginContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -1891,7 +1920,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-custom_fonts/font = SubResource( 28 )
+custom_fonts/font = SubResource( 33 )
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -1902,7 +1931,136 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="BossInfo" type="PanelContainer" parent="HUD/MarginContainer/Container" index="4"]
+
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -384.0
+margin_top = -73.0
+margin_right = 384.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/panel = ExtResource( 35 )
+_sections_unfolded = [ "Anchor", "Focus", "Margin", "Rect" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/Container/BossInfo" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 765.0
+margin_bottom = 70.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/margin_right = 6
+custom_constants/margin_top = 6
+custom_constants/margin_left = 6
+custom_constants/margin_bottom = 6
+_sections_unfolded = [ "custom_constants" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer/Container/BossInfo/MarginContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 756.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 750, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Rect" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Name" type="Label" parent="HUD/MarginContainer/Container/BossInfo/MarginContainer/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 750.0
+margin_bottom = 33.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 34 )
+text = "Name"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Rect", "custom_fonts" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HealthBar" type="ProgressBar" parent="HUD/MarginContainer/Container/BossInfo/MarginContainer/VBoxContainer" index="1"]
+
+material = ExtResource( 41 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 37.0
+margin_right = 750.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 0, 18 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+theme = ExtResource( 36 )
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = false
+_sections_unfolded = [ "Material", "Percent", "Rect", "Theme", "Visibility" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="Timers" type="Node" parent="." index="10"]
+
+editor/display_folded = true
 
 [node name="Dash" type="Timer" parent="Timers" index="0"]
 

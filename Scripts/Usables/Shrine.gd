@@ -1,6 +1,7 @@
 extends "Usable.gd"
 
 onready var enemies = $"/root/Node/Enemies"
+onready var projectiles = $"/root/Node/Projectiles"
 onready var menu = $"/root/Node/Menus/Shrine"
 
 func _init():
@@ -23,6 +24,9 @@ func activate():
 		player.change_state("Praying")
 		
 		enemies.respawn()
+		
+		for projectile in projectiles.get_children():
+			projectile.queue_free()
 		
 		menu.visible = true
 		menu.get_node("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelUp").grab_focus()

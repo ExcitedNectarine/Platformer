@@ -2,13 +2,14 @@ extends Area2D
 
 const SPEED = 750
 const ENEMY_SCRIPT = preload("res://Scripts/Characters/Enemies/Enemy.gd")
+const BOSS_SCRIPT = preload("res://Scripts/Characters/Enemies/Boss.gd")
 
 var go_left = false
 var damage = 0
 
 func _on_body_entered(body):
 	if body.name != "Player":
-		if body is ENEMY_SCRIPT:
+		if body is ENEMY_SCRIPT or body is BOSS_SCRIPT:
 			body.alter_health(-damage)
 		else:
 			$Audio/Thunk.play()

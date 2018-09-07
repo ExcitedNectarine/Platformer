@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Door.gd" type="Script" id=1]
 [ext_resource path="res://Textures/Miscellaneous/Door.png" type="Texture" id=2]
 [ext_resource path="res://Sounds/DoorOpen.wav" type="AudioStream" id=3]
 
-[sub_resource type="OccluderPolygon2D" id=3]
+[sub_resource type="OccluderPolygon2D" id=1]
 
 closed = true
 cull_mode = 0
@@ -12,6 +12,7 @@ polygon = PoolVector2Array( 12, 0, 12, 96, 0, 96, 0, 0 )
 
 [sub_resource type="Animation" id=2]
 
+resource_name = "Close"
 length = 0.4
 loop = false
 step = 0.2
@@ -22,10 +23,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 2 ]
+"values": [ 2, 1, 0 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -38,7 +39,39 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
-"method": "remove_collision"
+"method": "enable_collision"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+
+length = 0.4
+loop = false
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "disable_collision"
 } ]
 }
 
@@ -53,8 +86,9 @@ friction = 1.0
 bounce = 0.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
-activator_path = null
-activator_signal = null
+controller_path = null
+open_signal = null
+close_signal = null
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -76,7 +110,7 @@ __meta__ = {
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="." index="2"]
 
-occluder = SubResource( 3 )
+occluder = SubResource( 1 )
 light_mask = 1
 __meta__ = {
 "_edit_lock_": true
@@ -103,7 +137,8 @@ autoplay = ""
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/Open = SubResource( 2 )
+anims/Close = SubResource( 2 )
+anims/Open = SubResource( 3 )
 blend_times = [  ]
 
 

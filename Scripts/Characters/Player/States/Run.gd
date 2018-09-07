@@ -21,6 +21,9 @@ func update(delta):
 	elif host.velocity.x > 0:
 		host.flip_sprites(false)
 		
+	if Input.is_action_pressed("Drop") and host.is_on_floor():
+		host.position.y += 1
+		
 	if not host.test_move(host.transform, Vector2(0, 1)):
 		return "Fall"
 		

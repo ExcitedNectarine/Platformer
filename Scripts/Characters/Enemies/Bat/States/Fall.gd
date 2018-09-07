@@ -6,6 +6,8 @@ func enter():
 	host.animations.stop()
 	host.health_bar.hide()
 	$"../../Hitbox/CollisionShape2D".disabled = true
+	host.get_node("Alive").disabled = true
+	host.get_node("Dead").disabled = false
 	host.set_collision_layer_bit(2, false)
 	host.set_collision_mask_bit(1, false)
 	host.play_sound("Squeak")

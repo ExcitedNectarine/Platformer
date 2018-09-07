@@ -1,5 +1,7 @@
 extends Node
 
+const BOSS_SCRIPT = preload("res://Scripts/Characters/Enemies/Boss.gd")
+
 var enemies = {}
 
 """
@@ -22,6 +24,9 @@ Respawns all the enemies in their original positions.
 """
 func respawn():
 	for enemy in get_children():
+		if enemy is BOSS_SCRIPT and enemy.dead:
+			enemy.queue_free()
+			continue
 		var pos = enemy.spawn_position
 		var new_enemy = enemies[enemy.filename].instance()
 		enemy.queue_free()

@@ -5,9 +5,12 @@ const POINT_CONSTANT = 500
 var required_points = 0
 
 onready var player = $"/root/Node/Player"
-onready var level = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Level/Level
-onready var current = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Current/Current
-onready var required = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Required/Required
+onready var level = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer/Level/Level
+onready var current = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer/Current/Current
+onready var required = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/LevelInfo/MarginContainer/VBoxContainer/Required/Required
+onready var health = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Health/Health
+onready var stamina = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Stamina/Stamina
+onready var damage = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Stats/MarginContainer/VBoxContainer/Damage/Damage
 onready var audio = $AudioStreamPlayer
 
 func set_text():
@@ -16,6 +19,10 @@ func set_text():
 	level.text = str(player.level)
 	current.text = str(player.points)
 	required.text = str(required_points)
+	
+	health.text = str(player.health)
+	stamina.text = str(player.stamina)
+	damage.text = str(player.damage_multiplier)
 	
 static func next_level(level):
 	return stepify(POINT_CONSTANT * pow(level, 1.5), 100)

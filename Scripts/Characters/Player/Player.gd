@@ -9,6 +9,7 @@ const STARTING_ARROWS = 10
 const CAMERA_X = 100
 const CAMERA_SPEED = 3
 const ENEMY_SCRIPT = preload("res://Scripts/Characters/Enemies/Enemy.gd")
+const BOSS_SCRIPT = preload("res://Scripts/Characters/Enemies/Boss.gd")
 const FULL_POTION = preload("res://Textures/Player/Potion.png")
 const EMPTY_POTION = preload("res://Textures/Player/EmptyPotion.png")
 const FULL_QUIVER = preload("res://Textures/Player/Quiver.png")
@@ -23,23 +24,24 @@ var stamina = max_stamina
 var potions = STARTING_POTIONS
 var arrows = STARTING_ARROWS
 
-var hit_enemy = false
 var shrine_position = null
 var spawn_position = null
 
 onready var animations = $AnimationPlayer
 onready var dash_wait_timer = $Timers/DashWait
 onready var bow_and_arrow_timer = $Timers/BowAndArrow
-onready var stamina_bar = $HUD/Bars/MarginContainer/VBoxContainer/StaminaBar
-onready var potions_icon = $HUD/Items/MarginContainer/HBoxContainer/Potions/Texture
-onready var potions_left = $HUD/Items/MarginContainer/HBoxContainer/Potions/Amount
-onready var arrows_icon = $HUD/Items/MarginContainer/HBoxContainer/Arrows/Texture
-onready var arrows_left = $HUD/Items/MarginContainer/HBoxContainer/Arrows/Amount
-onready var current_level = $HUD/Points/MarginContainer/HBoxContainer/Level
-onready var current_points = $HUD/Points/MarginContainer/HBoxContainer/Points
-onready var items_container = $HUD/Items
-onready var points_container = $HUD/Points
-onready var prompt = $HUD/Prompt
+onready var health_bar = $HUD/MarginContainer/Container/Bars/MarginContainer/VBoxContainer/HealthBar
+onready var stamina_bar = $HUD/MarginContainer/Container/Bars/MarginContainer/VBoxContainer/StaminaBar
+onready var potions_icon = $HUD/MarginContainer/Container/Items/MarginContainer/HBoxContainer/Potions/Texture
+onready var potions_left = $HUD/MarginContainer/Container/Items/MarginContainer/HBoxContainer/Potions/Amount
+onready var arrows_icon = $HUD/MarginContainer/Container/Items/MarginContainer/HBoxContainer/Arrows/Texture
+onready var arrows_left = $HUD/MarginContainer/Container/Items/MarginContainer/HBoxContainer/Arrows/Amount
+onready var current_level = $HUD/MarginContainer/Container/Points/MarginContainer/HBoxContainer/Level
+onready var current_points = $HUD/MarginContainer/Container/Points/MarginContainer/HBoxContainer/Points
+onready var items_container = $HUD/MarginContainer/Container/Items
+onready var points_container = $HUD/MarginContainer/Container/Points
+onready var boss_info_container = $HUD/MarginContainer/Container/BossInfo
+onready var prompt = $HUD/MarginContainer/Container/Prompt
 onready var blood = $Particles/Blood
 onready var healing = $Particles/Healing
 onready var gain_points = $Particles/GainPoints
@@ -54,12 +56,24 @@ func show_prompt(text):
 	
 func hide_prompt():
 	prompt.visible = false
+	
+func show_boss_info(boss_name, boss_health):
+	boss_info_container.get_node("MarginContainer/VBoxContainer/Name").text = boss_name
+	boss_info_container.get_node("MarginContainer/VBoxContainer/HealthBar").max_value = boss_health
+	boss_info_container.get_node("MarginContainer/VBoxContainer/HealthBar").value = boss_health
+	boss_info_container.visible = true
+	
+func hide_boss_info():
+	boss_info_container.visible = false
+	
+func set_boss_health(value):
+	boss_info_container.get_node("MarginContainer/VBoxContainer/HealthBar").value = value
 
 """
 Resets the player. Used when at a checkpoint.
 """
 func reset():
-	.alter_health(max_health)
+	alter_health(max_health, false)
 	alter_stamina(max_stamina)
 	
 	potions = STARTING_POTIONS
@@ -70,6 +84,7 @@ func reset():
 	arrows_icon.texture = FULL_QUIVER
 	arrows_left.text = str(arrows)
 	
+	hide_boss_info()
 	change_state("Idle")
 
 """
@@ -77,17 +92,20 @@ If the player is blocking, blocks attack if attack comes from the
 opposite direction of the player.
 """
 func alter_health(difference, direction):
-	if state_name in ["BlockIdle", "BlockRun", "Thrust"] and facing_left != direction:
-		alter_stamina(difference)
-		change_state("Blocked")
-		if not stamina:
-			.alter_health(difference / 2)
-	elif state_name != "Dash":
-		if difference < 0:
+	if difference < 0:
+		if state_name in ["BlockIdle", "BlockRun", "Thrust"] and facing_left != direction:
+			alter_stamina(difference)
+			change_state("Blocked")
+			if not stamina:
+				.alter_health(difference / 2)
+		elif state_name != "Dash":
 			blood.emitting = true
 			blood_timer.start()
 			hit_sound.play()
+			.alter_health(difference)
+	else:
 		.alter_health(difference)
+	health_bar.value = health
 
 func alter_stamina(difference):
 	stamina += difference
@@ -132,11 +150,16 @@ func has_stamina(cost):
 	return stamina >= cost
 	
 func use_potion():
-	.alter_health(POTION_HEALTH)
+	alter_health(POTION_HEALTH, false)
 	alter_potions(-1)
 	healing.emitting = true
 	healing_timer.start()
-		
+	
+func set_camera_limits():
+	var tilemap = $"/root/Node/Tilemaps/".get_children()[0]
+	var limits = tilemap.get_used_rect()
+	camera.limit_bottom = limits.end.y * tilemap.cell_size.y
+	
 func _on_blood_timer_timeout():
 	blood.emitting = false
 	
@@ -153,9 +176,6 @@ func on_animation_finished(animation_name):
 		else:
 			change_state("Idle")
 		_physics_process(0)
-		
-func on_attack_finished():
-	hit_enemy = false
 	
 func _on_bow_and_arrow_timer_timeout():
 	if arrows:
@@ -166,7 +186,7 @@ Alters damage done based on what state player is in.
 """
 func _on_body_entered_attack(body):
 	if state_name in ["Swing", "Thrust", "HeavyThrust"]:
-		if not body.is_hit and body is ENEMY_SCRIPT:
+		if not body.is_hit and (body is ENEMY_SCRIPT or body is BOSS_SCRIPT):
 			body.alter_health(-current_state.DAMAGE * damage_multiplier)
 			body.is_hit = true
 		
@@ -177,7 +197,6 @@ func _on_body_exited_attack(body):
 func _init():
 	max_health = 100
 	sprite = "Idle"
-	health_bar_path = "HUD//Bars/MarginContainer/VBoxContainer/HealthBar"
 	sound_directory = "res://Sounds"
 	add_states = ["Jump", "Dash", "Swing", "Thrust", "HeavyThrust", "Drink", "Blocked"]
 
@@ -202,7 +221,13 @@ func _ready():
 	arrows_left.text = str(arrows)
 	spawn_position = position
 	
+	health_bar.max_value = max_health
+	health_bar.value = max_health
+	
+	set_camera_limits()
+	
 	change_state("Idle")
+	alter_points(9999999)
 
 func _physics_process(delta):
 	# Makes the camera move towards the direction the player is facing.
@@ -217,5 +242,6 @@ func _physics_process(delta):
 			delta * CAMERA_SPEED
 		)
 	
-	velocity.y += global.GRAVITY * delta
+	if state_name != "Dash":
+		velocity.y += global.GRAVITY * delta
 	velocity = move_and_slide(velocity, Vector2(0, -1))

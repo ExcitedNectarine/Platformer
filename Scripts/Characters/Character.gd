@@ -3,17 +3,16 @@ extends KinematicBody2D
 signal death
 
 var max_health = 0
-var health_bar_path = ""
 var sound_directory = ""
 
 onready var global = $"/root/Global"
 onready var health = max_health
-onready var health_bar = get_node(health_bar_path)
 onready var audio = $Audio/Other
 onready var hit_sound = $Audio/Hit
 
 # Other variables.
 var facing_left = false
+var dead = false
 var velocity = Vector2()
 var sprite = ""
 var sprites = {}
@@ -44,7 +43,11 @@ func change_state(new_state):
 		
 	state_name = state_stack.front()
 	current_state = states[state_name]
-	current_state.enter()
+	
+	if new_state == "Previous":
+		current_state.reenter()
+	else:
+		current_state.enter()
 
 """
 Alters the health of the character, updates the health bar and
@@ -53,8 +56,8 @@ emits the 'death' signal if the health reaches 0.
 func alter_health(difference):
 	health += difference
 	health = clamp(health, 0, max_health)
-	health_bar.value = health
 	if not health:
+		dead = true
 		emit_signal("death")
 		
 """
@@ -108,10 +111,6 @@ func _ready():
 			if file.ends_with("wav") or file.ends_with("ogg"):
 				sounds[file.split(".")[0]] = load(sound_directory + "/" + file)
 			file = dir.get_next()
-		
-	# Set the health bar.
-	health_bar.max_value = max_health
-	health_bar.value = health
 	
 func _physics_process(delta):
 	var new_state = current_state.update(delta)
