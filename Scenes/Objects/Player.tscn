@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://Scripts/Characters/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Characters/Player/States/Idle.gd" type="Script" id=2]
@@ -40,7 +40,6 @@
 [ext_resource path="res://Textures/Player/Potion.png" type="Texture" id=38]
 [ext_resource path="res://Fonts/VT323-Regular.ttf" type="DynamicFontData" id=39]
 [ext_resource path="res://Textures/Player/Quiver.png" type="Texture" id=40]
-[ext_resource path="res://Themes/EnemyHealthBarMaterial.tres" type="Material" id=41]
 
 [sub_resource type="AudioStreamRandomPitch" id=1]
 
@@ -795,7 +794,6 @@ script = ExtResource( 16 )
 
 [node name="Sprites" type="Node2D" parent="." index="1"]
 
-editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -953,7 +951,6 @@ __meta__ = {
 
 [node name="Audio" type="Node2D" parent="." index="2"]
 
-editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1149,6 +1146,7 @@ __meta__ = {
 
 [node name="Particles" type="Node2D" parent="." index="5"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1931,8 +1929,100 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BossInfo" type="PanelContainer" parent="HUD/MarginContainer/Container" index="4"]
+[node name="Info" type="CenterContainer" parent="HUD/MarginContainer/Container" index="4"]
 
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+use_top_left = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/MarginContainer/Container/Info" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 601.0
+margin_top = 321.0
+margin_right = 607.0
+margin_bottom = 327.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = ExtResource( 35 )
+_sections_unfolded = [ "Anchor", "Focus", "Grow Direction", "Hint", "Margin", "Mouse", "Rect", "Size Flags", "Theme", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/Container/Info/PanelContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 15.0
+margin_bottom = 36.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_constants/margin_right = 6
+custom_constants/margin_left = 6
+_sections_unfolded = [ "custom_constants" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Label" type="Label" parent="HUD/MarginContainer/Container/Info/PanelContainer/MarginContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 6.0
+margin_right = 6.0
+margin_bottom = 33.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 33 )
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_constants", "custom_fonts", "custom_styles" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BossInfo" type="PanelContainer" parent="HUD/MarginContainer/Container" index="5"]
+
+editor/display_folded = true
 visible = false
 anchor_left = 0.5
 anchor_top = 1.0
@@ -2029,7 +2119,6 @@ __meta__ = {
 
 [node name="HealthBar" type="ProgressBar" parent="HUD/MarginContainer/Container/BossInfo/MarginContainer/VBoxContainer" index="1"]
 
-material = ExtResource( 41 )
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

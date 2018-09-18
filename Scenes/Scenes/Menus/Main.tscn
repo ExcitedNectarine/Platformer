@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/Buttons/Play.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Buttons/Exit.gd" type="Script" id=4]
 
-[node name="Main" type="CenterContainer"]
+[node name="Main" type="CenterContainer" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -29,9 +29,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 581.0
-margin_top = 282.0
+margin_top = 318.0
 margin_right = 699.0
-margin_bottom = 438.0
+margin_bottom = 402.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -53,7 +53,7 @@ anchor_bottom = 0.0
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 115.0
-margin_bottom = 153.0
+margin_bottom = 81.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -78,7 +78,7 @@ anchor_bottom = 0.0
 margin_left = 6.0
 margin_top = 6.0
 margin_right = 106.0
-margin_bottom = 144.0
+margin_bottom = 72.0
 rect_min_size = Vector2( 100, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -123,7 +123,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Options" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" index="1"]
+[node name="Exit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -132,66 +132,6 @@ anchor_bottom = 0.0
 margin_top = 36.0
 margin_right = 100.0
 margin_bottom = 66.0
-rect_min_size = Vector2( 0, 30 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-theme = ExtResource( 2 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Options"
-flat = false
-align = 1
-_sections_unfolded = [ "Theme" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Credits" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" index="2"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 72.0
-margin_right = 100.0
-margin_bottom = 102.0
-rect_min_size = Vector2( 0, 30 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-theme = ExtResource( 2 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Credits"
-flat = false
-align = 1
-_sections_unfolded = [ "Theme" ]
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Exit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 108.0
-margin_right = 100.0
-margin_bottom = 138.0
 rect_min_size = Vector2( 0, 30 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false

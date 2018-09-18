@@ -1,4 +1,4 @@
-extends "Usable.gd"
+extends "res://Scripts/Usables/Usable.gd"
 
 signal activated
 signal deactivated

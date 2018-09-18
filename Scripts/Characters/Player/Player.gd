@@ -27,6 +27,8 @@ var arrows = STARTING_ARROWS
 var shrine_position = null
 var spawn_position = null
 
+var has_key = false
+
 onready var animations = $AnimationPlayer
 onready var dash_wait_timer = $Timers/DashWait
 onready var bow_and_arrow_timer = $Timers/BowAndArrow
@@ -42,6 +44,7 @@ onready var items_container = $HUD/MarginContainer/Container/Items
 onready var points_container = $HUD/MarginContainer/Container/Points
 onready var boss_info_container = $HUD/MarginContainer/Container/BossInfo
 onready var prompt = $HUD/MarginContainer/Container/Prompt
+onready var info = $HUD/MarginContainer/Container/Info
 onready var blood = $Particles/Blood
 onready var healing = $Particles/Healing
 onready var gain_points = $Particles/GainPoints
@@ -56,6 +59,12 @@ func show_prompt(text):
 	
 func hide_prompt():
 	prompt.visible = false
+	
+func show_info(text):
+	info.get_node("PanelContainer/MarginContainer/Label").text = text
+	info.visible = true
+	yield(get_tree().create_timer(3.0, false), "timeout")
+	info.visible = false
 	
 func show_boss_info(boss_name, boss_health):
 	boss_info_container.get_node("MarginContainer/VBoxContainer/Name").text = boss_name
@@ -76,11 +85,13 @@ func reset():
 	alter_health(max_health, false)
 	alter_stamina(max_stamina)
 	
-	potions = STARTING_POTIONS
+	if potions < STARTING_POTIONS:
+		potions = STARTING_POTIONS
 	potions_icon.texture = FULL_POTION
 	potions_left.text = str(potions)
 	
-	arrows = STARTING_ARROWS
+	if arrows < STARTING_ARROWS:
+		arrows = STARTING_ARROWS
 	arrows_icon.texture = FULL_QUIVER
 	arrows_left.text = str(arrows)
 	
@@ -225,9 +236,7 @@ func _ready():
 	health_bar.value = max_health
 	
 	set_camera_limits()
-	
 	change_state("Idle")
-	alter_points(9999999)
 
 func _physics_process(delta):
 	# Makes the camera move towards the direction the player is facing.

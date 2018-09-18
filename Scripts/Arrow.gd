@@ -19,7 +19,9 @@ func _on_body_entered(body):
 		$Particles/Trail.emitting = false
 		$Particles/Break.emitting = true
 		set_physics_process(false)
-		$DeleteTimer.start()
+		
+		yield(get_tree().create_timer(1.0, false), "timeout")
+		queue_free()
 
 func _ready():
 	if go_left:
@@ -28,7 +30,6 @@ func _ready():
 		$Particles/Break.position.x *= -1
 		
 	connect("body_entered", self, "_on_body_entered")
-	$DeleteTimer.connect("timeout", self, "queue_free")
 
 func _physics_process(delta):
 	position.x += -SPEED * delta if go_left else SPEED * delta

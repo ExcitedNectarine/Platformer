@@ -184,7 +184,6 @@ __meta__ = {
 
 [node name="Particles" type="Node2D" parent="." index="3"]
 
-editor/display_folded = true
 position = Vector2( 0, -15 )
 _sections_unfolded = [ "Transform" ]
 __meta__ = {

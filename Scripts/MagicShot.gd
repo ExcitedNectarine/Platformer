@@ -15,13 +15,14 @@ func _on_body_entered(body):
 	$Light2D.enabled = false
 	$Particles/Trail.emitting = false
 	$Particles/Splash.emitting = true
-	set_physics_process(false)
-	$DeleteTimer.start()
 	$Audio/Singe.play()
+	set_physics_process(false)
+	
+	yield(get_tree().create_timer(1.0, false), "timeout")
+	queue_free()
 
 func _ready():
 	connect("body_entered", self, "_on_body_entered")
-	$DeleteTimer.connect("timeout", self, "queue_free")
 	direction = (player.position - position).normalized() * SPEED
 
 func _physics_process(delta):

@@ -3,6 +3,7 @@ extends StaticBody2D
 export(NodePath) var controller_path
 export(String) var open_signal
 export(String) var close_signal
+export(bool) var locked
 
 func _on_opened():
 	$AnimationPlayer.play("Open")

@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Objects/Miscellaneous/Door.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Usables/OpenableDoor.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 57, 48 )
+
+[node name="OpenableDoor" instance=ExtResource( 1 )]
+
+controller_path = NodePath("Area2D")
+open_signal = "opened"
+close_signal = "closed"
+locked = null
+
+[node name="Area2D" type="Area2D" parent="." index="4"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 8
+collision_mask = 2
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+position = Vector2( 6, 48 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+

@@ -269,11 +269,4 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="DeleteTimer" type="Timer" parent="." index="5"]
-
-process_mode = 1
-wait_time = 1.0
-one_shot = true
-autostart = false
-
 
