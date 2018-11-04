@@ -82,6 +82,7 @@ func set_boss_health(value):
 Resets the player. Used when at a checkpoint.
 """
 func reset():
+	dead = false
 	alter_health(max_health, false)
 	alter_stamina(max_stamina)
 	
@@ -103,20 +104,21 @@ If the player is blocking, blocks attack if attack comes from the
 opposite direction of the player.
 """
 func alter_health(difference, direction):
-	if difference < 0:
-		if state_name in ["BlockIdle", "BlockRun", "Thrust"] and facing_left != direction:
-			alter_stamina(difference)
-			change_state("Blocked")
-			if not stamina:
-				.alter_health(difference / 2)
-		elif state_name != "Dash":
-			blood.emitting = true
-			blood_timer.start()
-			hit_sound.play()
+	if not dead:
+		if difference < 0:
+			if state_name in ["BlockIdle", "BlockRun", "Thrust"] and facing_left != direction:
+				alter_stamina(difference)
+				change_state("Blocked")
+				if not stamina:
+					.alter_health(difference / 2)
+			elif state_name != "Dash":
+				blood.emitting = true
+				blood_timer.start()
+				hit_sound.play()
+				.alter_health(difference)
+		else:
 			.alter_health(difference)
-	else:
-		.alter_health(difference)
-	health_bar.value = health
+		health_bar.value = health
 
 func alter_stamina(difference):
 	stamina += difference

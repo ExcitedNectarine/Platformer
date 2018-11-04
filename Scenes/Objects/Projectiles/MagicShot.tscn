@@ -123,7 +123,7 @@ random_pitch = 1.1
 audio_stream = ExtResource( 6 )
 random_pitch = 1.1
 
-[node name="MagicShot" type="Area2D"]
+[node name="MagicShot" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -135,7 +135,7 @@ collision_mask = 3
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision" ]
+_sections_unfolded = [ "Collision", "Visibility" ]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
@@ -186,7 +186,7 @@ __meta__ = {
 
 [node name="Trail" type="Particles2D" parent="Particles" index="0"]
 
-emitting = true
+emitting = false
 amount = 30
 lifetime = 1.0
 one_shot = false
@@ -204,7 +204,7 @@ texture = null
 normal_map = null
 h_frames = 1
 v_frames = 1
-_sections_unfolded = [ "Drawing", "Process Material", "Time" ]
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
 __meta__ = {
 "_edit_lock_": true
 }

@@ -4,6 +4,7 @@ const SPEED = 300
 
 var damage = 0
 var direction = Vector2()
+var homing = false
 
 onready var player = $"/root/Node/Player"
 
@@ -23,7 +24,14 @@ func _on_body_entered(body):
 
 func _ready():
 	connect("body_entered", self, "_on_body_entered")
-	direction = (player.position - position).normalized() * SPEED
+	homing = not randi() % 3
+	if not homing:
+		direction = (player.position - position).normalized() * SPEED
+	else:
+		$Particles/Trail.emitting = true
 
 func _physics_process(delta):
-	position += direction * delta
+	if homing:
+		position += ((player.position - position).normalized() * SPEED) * delta
+	else:
+		position += direction * delta

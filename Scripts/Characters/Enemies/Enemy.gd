@@ -71,4 +71,3 @@ func _physics_process(delta):
 				active = false
 				health_bar.visible = false
 				emit_signal("deactivated")
-				print("deactivated")

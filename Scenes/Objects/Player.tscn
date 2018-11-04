@@ -360,9 +360,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=21]
 
-length = 1.2
+length = 1.5
 loop = false
-step = 0.2
+step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/HeavyThrust:frame")
 tracks/0/interp = 1
@@ -370,7 +370,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6, 0.8 ),
+"times": PoolRealArray( 0, 0.7, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
@@ -382,7 +382,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.6, 0.8 ),
+"times": PoolRealArray( 0.7, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -394,7 +394,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.6 ),
+"times": PoolRealArray( 0.7 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Thrust" ],
@@ -404,9 +404,9 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=22]
 
-length = 0.4
+length = 1.0
 loop = false
-step = 0.1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Swing:frame")
 tracks/0/interp = 1
@@ -414,7 +414,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
+"times": PoolRealArray( 0, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
@@ -426,7 +426,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.3 ),
+"times": PoolRealArray( 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -438,7 +438,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Swing" ],
@@ -448,7 +448,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=23]
 
-length = 0.4
+length = 0.8
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -458,7 +458,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
+"times": PoolRealArray( 0, 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
@@ -470,7 +470,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.3 ),
+"times": PoolRealArray( 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -482,7 +482,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Thrust" ],
@@ -492,9 +492,9 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=24]
 
-length = 1.2
+length = 1.5
 loop = false
-step = 0.2
+step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/HeavyThrust:frame")
 tracks/0/interp = 1
@@ -502,7 +502,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6, 0.8 ),
+"times": PoolRealArray( 0, 0.7, 0.9 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
@@ -514,7 +514,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.6, 0.8 ),
+"times": PoolRealArray( 0.7, 0.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -526,7 +526,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.6 ),
+"times": PoolRealArray( 0.7 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Thrust" ],
@@ -536,9 +536,9 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=25]
 
-length = 0.4
+length = 1.0
 loop = false
-step = 0.1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprites/Swing:frame")
 tracks/0/interp = 1
@@ -546,7 +546,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
+"times": PoolRealArray( 0, 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
@@ -558,7 +558,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.3 ),
+"times": PoolRealArray( 0.5, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -570,7 +570,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0.5 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Swing" ],
@@ -580,7 +580,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id=26]
 
-length = 0.4
+length = 0.8
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -590,7 +590,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
+"times": PoolRealArray( 0, 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2 ]
@@ -602,7 +602,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.3 ),
+"times": PoolRealArray( 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -614,7 +614,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.2 ),
+"times": PoolRealArray( 0.4 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "Thrust" ],
@@ -730,8 +730,6 @@ _sections_unfolded = [ "Collision", "Pause", "collision" ]
 
 [node name="States" type="Node" parent="." index="0"]
 
-editor/display_folded = true
-
 [node name="Idle" type="Node" parent="States" index="0"]
 
 script = ExtResource( 2 )
@@ -794,6 +792,7 @@ script = ExtResource( 16 )
 
 [node name="Sprites" type="Node2D" parent="." index="1"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
@@ -951,6 +950,7 @@ __meta__ = {
 
 [node name="Audio" type="Node2D" parent="." index="2"]
 
+editor/display_folded = true
 __meta__ = {
 "_edit_lock_": true
 }
@@ -1312,6 +1312,7 @@ blend_times = [  ]
 
 [node name="HUD" type="CanvasLayer" parent="." index="9"]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -2149,8 +2150,6 @@ __meta__ = {
 
 [node name="Timers" type="Node" parent="." index="10"]
 
-editor/display_folded = true
-
 [node name="Dash" type="Timer" parent="Timers" index="0"]
 
 process_mode = 1
@@ -2168,7 +2167,7 @@ autostart = false
 [node name="BowAndArrow" type="Timer" parent="Timers" index="2"]
 
 process_mode = 1
-wait_time = 0.3
+wait_time = 0.5
 one_shot = true
 autostart = false
 
